@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head lang="en">
+        {% block head_block %} {% endblock %}
+        <meta charset="UTF-8" />
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/lart.jpg' %}"/>
+        <link rel=stylesheet type="text/css" href="{% static 'css/base.css' %}">
+        <title>
+            Lanex | {% block title_block %} {% endblock %}
+        </title>
+    </head>
+    <body>
+        <div class="content">
+            {% block body_block %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

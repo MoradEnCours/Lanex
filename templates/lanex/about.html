@@ -1,0 +1,18 @@
+{% extends 'lanex/base.html' %}
+{% load static %}
+
+{% block title_block %}
+About
+{% endblock %}
+{% block body_block %}
+<h1>{{ message }}</h1>
+<hr>
+    <p class="about">
+        On partage nos langues, c'est aussi simple que ça. Pour l'instant, ce n'est que le début
+    </p>
+        <ul class="about">
+            <li>On fait des choses.</li>
+        </ul>
+        <img id="1" class="about" src="{% static 'images/lart.jpg' %}"
+        alt= "Pas compliqué mais nada mal en tout cas" />
+{% endblock %}
