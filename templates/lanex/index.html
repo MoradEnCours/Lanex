@@ -2,8 +2,69 @@
 {% load static %}
 
 {% block title_block %}
-Home
+    Home
 {% endblock %}
 {% block body_block %}
-<h1>{{ message }}</h1>
+    <div class="jumbotron p-4">
+        <div class="container">
+            <h1 class="jumbotron-heading">Testing out Bootstrap jumbotron from ch12</h1>
+            <div>
+                <h2 class="h2">
+                {% if user.is_authenticated %}
+                    salut {{ user.username }}!
+                {% else %}
+                    comment va-t-on?
+                {% endif %}
+                </h2>
+            <strong>{{ boldmessage }}</strong>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-6">
+                    <div class="card-body">
+                        <h2>Most Popular Languages</h2>
+                        <p class="card-text">
+                        {% if languages %}
+                        <ul class="list-group">
+                            {% for language in languages %}
+                                <li class="list-group-item">
+                                    <a href = "{% url 'lanex:show_language' language.slug %}">
+                                    {{ language.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <strong>There are no languages present.</strong>
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-6">
+                    <div class="card-body">
+                        <h2>Most Viewed Requests</h2>
+                        <p class="card-text">
+                        {% if requests %}
+                        <ul class="list-group">
+                            {% for request in requests %}
+                            <li class="list-group-item">
+                                <a href= "{{ request.url }}">{{ request.title }}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {% else %}
+                        <strong>There are no requests present.</strong>
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
