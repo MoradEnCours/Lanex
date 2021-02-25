@@ -35,7 +35,6 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'lanex:index' %}">Home</a></li>
                         <li class="nav-item "><a class="nav-link" href="{% url 'lanex:about' %}">About</a></li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item "><a class="nav-link" href="{% url 'lanex:restricted' %}">Restricted</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}?next=/lanex/">Logout</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'lanex:add_language' %}">Add Language</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a></li>
