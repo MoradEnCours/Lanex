@@ -1,28 +1,35 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.utils import timezone
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from django.http import HttpResponse
 from django.urls import reverse
-from lanex.models import Language, LanguageRequest
-from lanex.forms import LanguageForm, RequestForm, UserForm, UserProfileForm
+from lanex.models import Language, LanguageRequest, UserProfile
+from lanex.forms import LanguageForm, RequestForm, UserForm, UserProfileForm, UserForm2
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+
 def index(request):
-    language_list = Language.objects.order_by('-likes')[:5]
+    if request.user.is_authenticated:
+        if timezone.now() - request.user.date_joined < timedelta(seconds=5):
+            return redirect(reverse('lanex:user_settings', 
+                                    kwargs={'user_profile_slug': request.user}))
+
+    language_list = Language.objects.all()[:5]
     request_list = LanguageRequest.objects.order_by('-views')[:5]
     context_dict = {}
-    context_dict['boldmessage'] = 'filler text to be replaced'
     context_dict['languages'] = language_list
     context_dict['requests'] = request_list
-    visitor_cookie_handler(request)
     return render(request, 'lanex/index.html', context=context_dict)
 
 
+
 def about(request):
-    context_dict = {'boldmessage': 'A bit of tinkering and testing going on here'}
-    visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
+    context_dict = {}
     return render(request, 'lanex/about.html', context=context_dict)
+
 
 def explore(request):
     language_list = Language.objects.all()[:5]
@@ -51,6 +58,38 @@ def show_language(request, language_name_slug):
     return render(request, 'lanex/language.html', context=context_dict)
 
 
+def show_request(request, language_name_slug, request_name_slug):
+    context_dict = {}
+    
+    try:
+        lang_request = LanguageRequest.objects.get(slug=request_name_slug)
+        LanguageRequest.objects.filter(slug=request_name_slug).update(views=lang_request.views+1)
+        context_dict['request'] = lang_request
+        comments = lang_request.comments.filter(active=True)
+        new_comment = None
+        
+        # Comment posted
+        if request.method == 'POST':
+            comment_form = CommentForm(data=request.POST)
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.creator = request.user
+                new_comment.request = lang_request
+                new_comment.save()
+                context_dict['new_comment'] = new_comment
+            else:
+                comment_form = CommentForm()
+                context_dict['comment_form'] = comment_form
+            
+            context_dict['comment_form'] = comment_form
+        context_dict['comments'] = comments
+    
+    except LanguageRequest.DoesNotExist:
+        context_dict['request'] = None
+    
+    return render(request, 'lanex/request.html', context=context_dict)
+
+
 @login_required
 def add_language(request):
     if request.user.is_superuser:
@@ -69,8 +108,7 @@ def add_language(request):
     else:
         return redirect('/')
 
-### Come back to this later, incomplete
-'''
+
 @login_required
 def add_language_request(request, language_name_slug):
     try:
@@ -106,7 +144,7 @@ def add_language_request(request, language_name_slug):
     
     context_dict = {'form': form, 'language': language}
     return render(request, 'lanex/add_request.html', context=context_dict)
-'''
+
 
 @login_required
 def add_request(request):
@@ -136,6 +174,111 @@ def add_request(request):
     return render(request, 'lanex/add_request.html', context=context_dict)
 
 
+def show_user(request, user_profile_slug):
+    context_dict = {}
+    try:
+        user = User.objects.get(username=user_profile_slug)
+        user_profile = UserProfile.objects.get(user=user)
+        context_dict['user_profile'] = user_profile
+        
+        try:
+            user_requests = LanguageRequest.objects.filter(creator=user)
+            context_dict['requests'] = user_requests
+        except LanguageRequest.DoesNotExist:
+            context_dict['requests'] = None
+    
+    except User.DoesNotExist:
+        context_dict['user_profile'] = None
+    
+    return render(request, 'lanex/user.html', context=context_dict)
+
+
+
+def search(request):
+    query = request.GET.get('q')
+    request_list = None
+    
+    if query != None:
+        request_list = LanguageRequest.objects.filter(Q(title__icontains=query) | Q(desc__icontains=query)) 
+        return render(request, 'lanex/search.html', {'query': query,'requests': request_list}) 
+    
+    return render(request, 'lanex/search.html', {'query': query, 'requests': request_list})
+
+
+@login_required
+def accept_request(request, language_name_slug, request_name_slug):
+    lang_request = LanguageRequest.objects.get(slug=request_name_slug)
+    if lang_request.creator != request.user:
+        LanguageRequest.objects.filter(slug=request_name_slug).update(completed=True)
+        return redirect(reverse('lanex:show_user', 
+                                kwargs={'user_profile_slug': lang_request.creator.username}))
+    else:
+        return redirect(reverse('lanex:show_request', 
+                                kwargs={'language_name_slug': lang_request.language, 
+                                        'request_name_slug': lang_request.request_id}))
+
+
+
+@login_required
+def delete_request(request, language_name_slug, request_name_slug):
+    lang_request = LanguageRequest.objects.get(slug=request_name_slug)
+    if lang_request.creator == request.user:
+        LanguageRequest.objects.filter(slug=request_name_slug).delete()
+        return redirect(reverse('lanex:show_user', 
+                            kwargs={'user_profile_slug': lang_request.creator.username}))
+    else:
+        return redirect(reverse('lanex:show_request', 
+                            kwargs={'language_name_slug': lang_request.language, 
+                                    'request_name_slug': lang_request.request_id}))
+
+
+@login_required
+def user_settings(request, user_profile_slug):
+    if user_profile_slug == request.user.username:
+        user_profile = UserProfile.objects.get(user=request.user)
+        
+        if request.method == "POST":
+            update_user_form = UserForm2(data=request.POST, instance=request.user)
+            update_profile_form = UserProfileForm(data=request.POST, instance=user_profile)
+        
+            if update_user_form.is_valid() and update_profile_form.is_valid():
+                user = update_user_form.save()
+                profile = update_profile_form.save(commit=False)
+                profile.user = user
+        
+                if 'picture' in request.FILES:
+                    profile.picture = request.FILES['picture']
+        
+                profile.save()
+                return redirect(reverse('lanex:show_user', 
+                                        kwargs={'user_profile_slug': user_profile_slug}))
+            else:
+                print(update_user_form.errors, update_profile_form.errors)
+        
+        else:
+            update_user_form = UserForm2(instance=request.user)
+            update_profile_form = UserProfileForm(instance=user_profile)
+        return render(request, 'lanex/user_settings.html', 
+            {'update_user_form': update_user_form, 'update_profile_form': update_profile_form})
+    
+    else:
+        return redirect(reverse('lanex:show_user', 
+                                kwargs={'user_profile_slug': user_profile_slug}))
+
+
+@login_required
+def user_delete(request, user_profile_slug):
+    if user_profile_slug == request.user.username:
+        User.objects.filter(username=user_profile_slug).delete()
+        return redirect("lanex:index")
+    else:
+        return redirect(reverse('lanex:show_user', 
+                                kwargs={'user_profile_slug': user_profile_slug}))
+
+
+
+## Previus code, Dead code; leaving for a bit in case need to adapt some parts later
+"""
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -179,8 +322,8 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request, 'lanex/login.html')
-
-
+"""
+"""
 @login_required
 def restricted(request):
     return render(request, 'lanex/restricted.html')
@@ -217,4 +360,4 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     request.session['visits'] = visits
 
-
+"""
