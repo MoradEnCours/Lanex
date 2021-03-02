@@ -21,11 +21,4 @@ urlpatterns = [
     path('add_request/', views.add_request, name='add_request'),
     path('search/', views.search, name='search'),
 
-    ## Ce sont des codes morts/Dead Code for now
-    #path('register/', views.register, name='register'),
-    #path('login/', views.user_login, name='login'),
-    #path('restricted/', views.restricted, name='restricted'),
-    #path('language/<slug:language_name_slug>/add_request/', views.add_request, name='add_request'), 
-    #path('logout/', views.user_logout, name='logout'),
-    ### Faut réviser plus tard
 ]
