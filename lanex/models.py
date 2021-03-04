@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 from registration.signals import user_registered
 import uuid
 
+'''
+THe language model with its fields.
+A default image is provided for each language initially if no other image is supplied
+  and the names of languages are meant to be unique.
+'''
 class Language(models.Model):
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(unique=True)
@@ -17,6 +22,10 @@ class Language(models.Model):
         return self.name
 
 
+'''
+The language request model and its associated fields.
+Request IDs are unique and randomly generated using UUID, in addition to being used as slugs.
+'''
 class LanguageRequest(models.Model):
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
@@ -38,7 +47,10 @@ class LanguageRequest(models.Model):
     def __str__(self):
         return self.title
 
-
+'''
+Model for the user profile, comprising the registered user, a profile image and a slug.
+A default profile image is provided initially.
+'''
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='profile_images', default='profile_images/default.jpg')
@@ -51,7 +63,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-        
+
+'''
+A model for the comments, including ordering by creation time.
+'''
 class Comment(models.Model):
     request = models.ForeignKey(LanguageRequest,on_delete=models.CASCADE,related_name='comments')
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -66,6 +81,9 @@ class Comment(models.Model):
         return 'Comment {} by {}'.format(self.body, self.name)
 
 
+'''
+Creates a profile for the user after the authenticated user is created.
+'''
 def createUserProfile(sender, user, request, **kwargs):
     UserProfile.objects.get_or_create(user=user)
     

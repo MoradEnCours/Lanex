@@ -10,7 +10,9 @@ import random
 
 def populate():
 
-    # Creates Users to assign as Creators
+    '''
+    Pre-provided test users for testing site features like language request creation.
+    '''
     example_users = [
         {'username': 'username1',
         'password': 'french',
@@ -22,7 +24,6 @@ def populate():
         'password': 'japanese',
         'email': 'user3@ok.com'},
     ]
-
 
 
     french_requests = [
@@ -38,7 +39,6 @@ def populate():
     ]
 
     
-
     spanish_requests = [
         {'title': 'Foo1',
         'desc': 'Foo',
@@ -51,6 +51,7 @@ def populate():
         'views': 16},
     ]
 
+
     japanese_requests = [
         {'title': 'Foo1',
         'desc': 'Foo',
@@ -62,6 +63,7 @@ def populate():
         'desc': 'Foo',
         'views': 16},
     ]
+
 
     english_requests = [
         {'title': 'Foo1',
@@ -88,34 +90,37 @@ def populate():
     ]
 
 
-
     languages = {'French': {'requests': french_requests, 'picture': 'languages/french.jpg'},
             'Spanish': {'requests': spanish_requests, 'picture': 'languages/spanish.jpg'},
             'Japanese': {'requests': japanese_requests, 'picture': 'languages/japanese.jpg'},
             'English': {'requests': english_requests, 'picture': 'languages/english.jpg'},
             'Others': {'requests': other_requests, 'picture': 'languages/default.jpg'} }
 
-
-
+    '''
+    Add users to test the site into a list and print confirmation to ensure user has been added
+      and apply the same for all example users provided.
+    '''
     user_list = []
     for u in example_users:
-        user_to_add = add_user(u['username'],u['password'],u['email'])
+        user_to_add = add_user(u['username'], u['password'], u['email'])
         user_list.append(user_to_add)
         print(f'- Added example user {user_to_add}')
 
 
     for language, language_data in languages.items():
-        l = add_language(language, language_data['picture'])
-        for r in language_data['requests']:
-            add_request(l, r['title'], r['desc'], user_list[random.randint(0,2)], r['views'])
+        lang = add_language(language, language_data['picture'])
+        for request in language_data['requests']:
+            add_request(lang, request['title'], request['desc'], user_list[random.randint(0,2)], request['views'])
 
 
     for lang in Language.objects.all():
-        for r in LanguageRequest.objects.filter(language=lang):
-            print(f'- {lang}: {r}')
+        for request in LanguageRequest.objects.filter(language=lang):
+            print(f'- {lang}: {request}')
 
 
-
+'''
+Provides example users with a random first and last name.
+'''
 def get_random_name(situation):
     if situation == "first":
         first_names = ['Alexios','Minerva','Jun','Vladmir','Francesca','Ezio','Dumbledore','Zelda','Robin','Jeff','Lea','Pikachu']
@@ -126,8 +131,8 @@ def get_random_name(situation):
 
 
 def add_request(language, title, desc, creator, views=0):
-    r = LanguageRequest.objects.get_or_create(language=language, title=title, creator=creator, desc=desc, views=views)[0]
-    return r
+    request = LanguageRequest.objects.get_or_create(language=language, title=title, creator=creator, desc=desc, views=views)[0]
+    return request
 
 
 def add_language(name, picture):
@@ -139,10 +144,9 @@ def add_language(name, picture):
 def add_user(username, password, email):
     user_to_add = User(username=username, email=email, password=make_password(password), first_name=get_random_name("first"), last_name=get_random_name("last"))
     user_to_add.save()
-    user_prof = UserProfile.objects.get_or_create(user=user_to_add)[0]
-    user_prof.save()
+    user_profile = UserProfile.objects.get_or_create(user=user_to_add)[0]
+    user_profile.save()
     return user_to_add
-
 
 
 if __name__ == '__main__':

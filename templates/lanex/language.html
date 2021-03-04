@@ -5,30 +5,54 @@
     {% if language %}
         {{ language.name }}
     {% else %}
-        Unknown Language
+        The language is unknown
     {% endif %}
 {% endblock %}
 
 {% block body_block %}
-    <div class="jumbotron p-4">
-        <div class="container">
+<div class="container text-center">
+    <div class="jumbotron p-4 bg-success">
+        <div class="container bg-warning">
         {% if language %}
              <h1 class="jumbotron-heading">{{ language.name }}</h1>
+             <strong class="activity">Requests for {{ language.name }}</strong>
+             <br>
+             {% if user.is_authenticated %}
+             <a style="font-size:25px" href ="{% url 'lanex:add_language_request' language.slug %}">Click here to add a request</a><br />
+             {% endif %}
         {% else %}
-            The specified language does not exist.
+            The specified language does not appear to exist.
         {% endif %}
         </div>
     </div>
-    <ul>
-    {% if requests %}
-        {% for request in requests %}
-            <li><a href="{{ request.url }}">{{ request.title }}</a></li>
-        {% endfor %}
-    </ul>
-    {% else %}
-        <strong>No requests currently in language.</strong>
-    {% endif %}
-    {% if user.is_authenticated %}
-        <a href ="{% url 'lanex:add_request' language.slug %}">Add Request</a><br />
-    {% endif %}
+</div>
+<section id="requests" class="bg-">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+            {% if requests %}
+                {% for request in requests %}
+                    {% if request.completed == False %}
+                    <ul class="list">
+                        <li class="list">
+                        {% if request.picture %}
+                        <img class="list" src="{{ request.picture.url }}" />
+                        {% else %}
+                        <img class="list" src="{{ request.language.picture.url }}" />
+                        {% endif %}
+                        <h3 class="list"><a href="{% url 'lanex:show_request' request.language.slug request.slug %}">
+                        {{ request.title }}</a></h3>
+                        <p class="list">{{ request.desc }}</p>
+                        </li>
+                    </ul>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <li class="nav-item">There are no requests present.</li>
+            {% endif %}
+        <br>
+        </div>
+      </div>
+    </div>
+    </section>
 {% endblock %}
