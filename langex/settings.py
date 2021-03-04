@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-LOGIN_URL = 'connectercise:login'
+LOGIN_URL = 'lanex:login'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'lanex',
     'registration',
+    'location_field.apps.DefaultConfig',
+    'django_extensions',
+
 ]
 
 REGISTRATION_OPEN = True
@@ -98,6 +101,11 @@ DATABASES = {
     }
 }
 
+# Used for Request Form Map
+LOCATION_FIELD = {
+    'map.provider': 'openstreetmap',
+    'search.provider': 'nominatim',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -137,6 +145,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
+STATIC_ROOT = '/home/lanex/static'
 
 
 # Media files (Images)
@@ -151,3 +160,12 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 ]
+
+#If true, users can register
+REGISTRATION_OPEN = True
+#If true, user will be automatically logged in after registration
+REGISTRATION_AUTO_LOGIN = True
+#The URL that Django redirects the users to after logging in
+LOGIN_REDIRECT_URL = 'lanex:index'
+#The page users are directed to if they are not logged in
+LOGIN_URL = 'auth_login'

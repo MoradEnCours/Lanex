@@ -3,7 +3,7 @@
 
 {% block title_block %}
 {% if user.is_authenticated %}
-    Dashboard
+    Homepage
 {% else %}
     Home
 {% endif %}
@@ -13,7 +13,7 @@
 <div class="container text-center">
     <div class="jumbotron p-4">
         <div class="container">
-              <h1>Oh hello, 
+              <h1>Salut 
                 {% if user.first_name %}
                 {{ user.first_name }} {{ user.last_name }}!
                 {% else %}
@@ -23,8 +23,66 @@
         </div>
     </div>
   <br>
-  {% else %}
-  <section class="text-white">
+
+<section id="languages">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+    <h2>Languages to view</h2><br>
+      <ul class="nav flex-column">
+        {% if languages %}
+            {% for l in languages %}
+                <ul class="list">
+                    <li class="list">
+                    <img class="list" src="{{ l.picture.url }}" />
+                    <h3 class="list"><a class="nav-link active" href = "{% url 'lanex:show_language' l.slug %}">
+                    {{ l.name }}</a></h3>
+                    </li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <li class="nav-item">No languages present it seems </li>
+        {% endif %}
+    </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+</section>
+<br>
+<section id="requests">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      {% if requests %}
+      <h2>Explore current hot language requests</h2><br>
+        <ul class="nav flex-column">
+            {% for r in requests %}
+                <ul class="list">
+                    <li class="list">
+                    {% if r.picture %}
+                    <img class="list" src="{{ r.picture.url }}" />
+                    {% else %}
+                    <img class="list" src="{{ r.language.picture.url }}" />
+                    {% endif %}
+                    <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
+                    {{ r.title }}</a></h3>
+                    <p class="list">{{ r.desc }}</p>
+                    </li>
+                </ul>
+            {% endfor %}
+      {% else %}
+            <li class="nav-item">No requests present it appears</li>
+      {% endif %}
+    </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+{% else %}
+  <section class="text-green">
     <div class="container text-center">
       <h1>Welcome to Lanex</h1>
       <br>
@@ -48,7 +106,7 @@
     <br>
     <div class="row">
         <div class="col">
-          <a style="background-color: #1560BD;border-bottom: 5px solid #1560BD;text-shadow: 0px -2px #1560BD;" href="{% url 'registration_register' %}" class="action-button shadow animate blue">Register</a>
+          <a style="background-color: #3f4375;border-bottom: 5px solid #1560BD;text-shadow: 0px -2px #1560BD;" href="{% url 'registration_register' %}" class="action-button shadow animate blue">Register</a>
         </div>
     </div>
     <br>
@@ -57,69 +115,86 @@
   </div>
 </section>
 
-
-  <!--
-    <div class="jumbotron p-4">
-        <div class="container">
-            <h1 class="jumbotron-heading">Testing out Bootstrap jumbotron from ch12</h1>
-            <div>
-                <h2 class="h2">
-                {% if user.is_authenticated %}
-                    salut {{ user.username }}!
-                {% else %}
-                    comment va-t-on?
-                {% endif %}
-                </h2>
-            <strong>{{ boldmessage }}</strong>
-            </div>
-        </div>
-    </div>
+<section id="about" class="bg-warning">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-6">
-                    <div class="card-body">
-                        <h2>Most Popular Languages</h2>
-                        <p class="card-text">
-                        {% if languages %}
-                        <ul class="list-group">
-                            {% for language in languages %}
-                                <li class="list-group-item">
-                                    <a href = "{% url 'lanex:show_language' language.slug %}">
-                                    {{ language.name }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        {% else %}
-                        <strong>There are no languages present.</strong>
-                        {% endif %}
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>About Lanex</h2>
+          <p class="lead">Text describing what Lanex is about:</p>
+              Filler text <br>
+              It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair<br>
 
-            <div class="col-md-6">
-                <div class="card mb-6">
-                    <div class="card-body">
-                        <h2>Most Viewed Requests</h2>
-                        <p class="card-text">
-                        {% if requests %}
-                        <ul class="list-group">
-                            {% for request in requests %}
-                            <li class="list-group-item">
-                                <a href= "{{ request.url }}">{{ request.title }}</a>
-                            </li>
-                        {% endfor %}
-                        </ul>
-                        {% else %}
-                        <strong>There are no requests present.</strong>
-                        {% endif %}
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
--->
-{% endif %}
+  </section>
+
+  <section id="languages">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+        <h2>Supported languages</h2>
+        <p class="lead">Short descriptive text giving a better idea of the languages</p> 
+          <ul class="nav flex-column">
+            {% if languages %}
+                {% for l in languages %}
+                    <ul class="list">
+                        <li class="list">
+                        <img class="list" src="{{ l.picture.url }}" />
+                        <h3 class="list"><a class="nav-link active" href = "{% url 'lanex:show_language' l.slug %}">
+                        {{ l.name }}</a></h3>
+                        </li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <li class="nav-item">There are no languages present.</li>
+            {% endif %}
+        </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="requests" class="bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Recent language requests made by users</h2>
+          <p class="lead">Text expanding on this a bit </p>
+            <ul class="nav flex-column">
+            {% if requests %}
+                {% for r in requests %}
+                    <ul class="list">
+                        <li class="list">
+                        {% if r.picture %}
+                        <img class="list" src="{{ r.picture.url }}" />
+                        {% else %}
+                        <img class="list" src="{{ r.language.picture.url }}" />
+                        {% endif %}
+                        <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
+                        {{ r.title }}</a></h3>
+                        <p class="list">{{ r.desc }}</p>
+                        </li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <li class="nav-item">There are no requests present.</li>
+            {% endif %}
+        </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endif %}
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="{% static 'js/scrolling-nav.js' %}"></script>
+
 {% endblock %}

@@ -20,5 +20,6 @@ urlpatterns = [
     path('user/<slug:user_profile_slug>/delete/', views.user_delete, name='user_delete'),
     path('add_request/', views.add_request, name='add_request'),
     path('search/', views.search, name='search'),
-
+    path('privacy_policy/', views.privacy, name='privacy'),
+    path('terms_of_service/', views.terms, name='terms'),
 ]

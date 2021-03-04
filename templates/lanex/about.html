@@ -2,17 +2,25 @@
 {% load static %}
 
 {% block title_block %}
-About
+    About
 {% endblock %}
 {% block body_block %}
-<h1>{{ message }}</h1>
-<hr>
-    <p class="about">
-        On partage nos langues, c'est aussi simple que ça. Pour l'instant, ce n'est que le début
-    </p>
-        <ul class="about">
-            <li>On fait des choses.</li>
-        </ul>
-        <img id="1" class="about" src="{% static 'images/lart.jpg' %}"
-        alt= "Pas compliqué mais nada mal en tout cas" />
+<div class="container text-center">
+    <div class="jumbotron p-4">
+        <div class="container bg-success">
+            <h2>About Lanex</h2>
+        </div>
+    </div>
+
+    <section id="about" class="bg-light">
+        <div class="container">
+            <strong class="activity">Text about Lanex</strong>
+              <br>
+              <br>
+              Long ago, the four nations lived together in harmony. Then, everything changed when the Fire Nation attacked. Only the Avatar, master of all four elements, could stop them, but when the world needed him most, he vanished. A hundred years passed and my brother and I discovered the new Avatar, an airbender named Aang.
+              <br>
+        </div>
+        </section>
+    </div>
+
 {% endblock %}

@@ -32,7 +32,6 @@ class LanguageRequest(models.Model):
 
     def save(self, *args, **kwargs):
         self.request_id = str(uuid.uuid4().int)
-        #request_id = models.CharField(max_length=128,primary_key=True)
         self.slug = slugify(self.request_id)
         super(LanguageRequest, self).save(*args, **kwargs)
 

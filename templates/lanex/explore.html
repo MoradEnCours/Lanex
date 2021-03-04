@@ -5,5 +5,41 @@
 Explore
 {% endblock %}
 {% block body_block %}
-<h1>{{ message }}</h1>
+<div class="container text-center">
+    <div class="jumbotron p-4 bg-info">
+        <div class="container">
+            <h1 class="activity">Explore some of the language request activities</h1>
+            <div>
+            <strong class="activity">Language request activity things-related shown with most popular languages and requests</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    <section id="requests" class="bg">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+            <h2>Most popular languages on the site</h2><br>
+                        <p class="card-text">
+                        {% if languages %}
+                        {% for l in languages %}
+                        <ul class="list">
+                            <li class="list">
+                            <img class="list" src="{{ l.picture.url }}" />
+                            <h3 class="list"><a class="nav-link active" href = "{% url 'lanex:show_language' l.slug %}">
+                            {{ l.name }}</a></h3>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    {% else %}
+                        <li class="nav-item">There are no languages present.</li>
+                    {% endif %}
+                    </ul>
+                    </p>
+            </div>
+        </div>
+    </div>
+    </section>
+
 {% endblock %}
