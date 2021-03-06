@@ -114,7 +114,8 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
         <h2>Supported languages</h2>
-        <p class="lead">Short descriptive text giving a better idea of the languages</p> 
+        {% include "lanex/languages_view.html" %} 
+        {% comment %} <p class="lead">Short descriptive text giving a better idea of the languages</p> 
           <ul class="nav flex-column">
             {% if languages %}
                 {% for l in languages %}
@@ -128,7 +129,7 @@
                 {% endfor %}
             {% else %}
                 <li class="nav-item">There are no languages present.</li>
-            {% endif %}
+            {% endif %} {% endcomment %}
         </ul>
         </div>
       </div>

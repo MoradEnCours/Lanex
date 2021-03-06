@@ -1,28 +1,20 @@
 <section id="languages">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12 mx-auto">
-    <h2>Languages to view</h2><br>
-        <div class="row">
-            {% if languages %}
-                {% for l in languages %}
-                    <div class="col-md-3">
-                        <a href = "{% url 'lanex:show_language' l.slug %}">
-                            <div class="card">
-                                <img class="card-image language-card-image" src="{{ l.picture.url }}" />
-                                <div class="card-body">
-                                    <h5 class="card-title test">{{ l.name }}</h5> 
-                                </div>
+    <div class="row">
+        {% if languages %}
+            {% for l in languages %}
+                <div class="col-md-3">
+                    <a href = "{% url 'lanex:show_language' l.slug %}">
+                        <div class="card">
+                            <img class="card-image language-card-image" src="{{ l.picture.url }}" />
+                            <div class="card-body">
+                                <h5 class="card-title test">{{ l.name }}</h5> 
                             </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <li class="nav-item">No languages present it seems </li>
-            {% endif %}
-        </div>
-
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <li class="nav-item">No languages present it seems </li>
+        {% endif %}
     </div>
-  </div>
-</div>
 </section>
