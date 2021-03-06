@@ -8,6 +8,7 @@
     Home
 {% endif %}
 {% endblock %}
+
 {% block body_block %}
 {% if user.is_authenticated %}
 <div class="container text-center">
@@ -24,10 +25,9 @@
     </div>
   <br>
 
+
 {% include "lanex/languages_view.html" %} 
 
-
-</section>
 <br>
 <section id="requests">
 <div class="container">
@@ -60,6 +60,8 @@
 </section>
 
 {% else %}
+
+  {% include "lanex/index/carousel.html" %} 
   <section class="text-green">
     <div class="container text-center">
       <h1>Welcome to Lanex</h1>

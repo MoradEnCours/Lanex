@@ -2,3 +2,17 @@
     height: 160px !important;
     object-fit: cover
 }
+
+.index-carousel img {
+    max-height: 400px !important;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: 50% 30%;
+    filter: brightness(50%);
+}
+
+.carousel-caption
+{
+    top: 30%;
+}
