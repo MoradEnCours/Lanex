@@ -196,10 +196,10 @@ def add_request(request):
         if form.is_valid():
             language_request = form.save(commit=False)
             language_request.views = 0
-            lang_request.creator = request.user
+            language_request.creator = request.user
     
             if 'picture' in request.FILES:
-                    lang_request.picture = request.FILES['picture']
+                    language_request.picture = request.FILES['picture']
     
             language_request.completed = False
             language_request.save()

@@ -23,6 +23,9 @@
         {% if request.completed %}
         <h4>This request is over</h4>
         {% endif %}
+        {% if request.location %}
+          <h6><span data-feather="map-pin"></span><a class="logo" href="https://maps.google.com?q={{ request.location }}"> Open Google Maps </a></h6>
+        {% endif %}
         {% if request.suggested_date %}
           <h6><span data-feather="calendar"></span> {{ request.suggested_date }}</h6>
         {% endif %}
