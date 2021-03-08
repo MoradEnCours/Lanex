@@ -11,10 +11,10 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    
     <title>
         lanex - {% block title_block %}Les langues sont belles, pas vrai?{% endblock %}
     </title>
-    
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     
@@ -27,7 +27,7 @@
     </head>
     
     <body>    
-    <nav class="navbar navbar-expand-md navbar-dark bg-warning">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -141,12 +141,12 @@
             </nav>
             <main role="main" class="col-md-9  ml-sm-auto col-lg-10 px-4">		
         {% else %}
-        <div class="container text-center">
-        <main role="main" class="col-lg-8 mx-auto">
+        <div class="text-center">
+        {% comment %} <main role="main" class="col-lg-12 mx-auto"> {% endcomment %}
         {% endif %}
                 {% block body_block %}
                 {% endblock %}
-        <div class="container text-center"
+
         <footer>
             <hr>
                 <a class="footer" href="{% url 'lanex:about' %}">About</a> | <a class="footer" href="{% url 'lanex:privacy' %}">Privacy </a> | <a class="footer" href="{% url 'lanex:terms' %}">Terms and Conditions</a></p>

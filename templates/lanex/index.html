@@ -8,6 +8,7 @@
     Home
 {% endif %}
 {% endblock %}
+
 {% block body_block %}
 {% if user.is_authenticated %}
 <div class="container text-center">
@@ -24,10 +25,9 @@
     </div>
   <br>
 
+
 {% include "lanex/languages_view.html" %} 
 
-
-</section>
 <br>
 <section id="requests">
 <div class="container">
@@ -60,6 +60,8 @@
 </section>
 
 {% else %}
+
+  {% include "lanex/index/carousel.html" %} 
   <section class="text-green">
     <div class="container text-center">
       <h1>Welcome to Lanex</h1>
@@ -112,22 +114,7 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
         <h2>Supported languages</h2>
-        <p class="lead">Short descriptive text giving a better idea of the languages</p> 
-          <ul class="nav flex-column">
-            {% if languages %}
-                {% for l in languages %}
-                    <ul class="list">
-                        <li class="list">
-                        <img class="list" src="{{ l.picture.url }}" />
-                        <h3 class="list"><a class="nav-link active" href = "{% url 'lanex:show_language' l.slug %}">
-                        {{ l.name }}</a></h3>
-                        </li>
-                    </ul>
-                {% endfor %}
-            {% else %}
-                <li class="nav-item">There are no languages present.</li>
-            {% endif %}
-        </ul>
+        {% include "lanex/languages_view.html" %} 
         </div>
       </div>
     </div>
