@@ -39,54 +39,54 @@ def populate():
     ]
 
     
-    # spanish_requests = [
-    #     {'title': 'Foo1',
-    #     'desc': 'Foo',
-    #     'views': 64},
-    #     {'title': 'Foo2',
-    #     'desc': 'Foo',
-    #     'views': 32},
-    #     {'title': 'Foo3',
-    #     'desc': 'Foo',
-    #     'views': 16},
-    # ]
+    spanish_requests = [
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 64},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
+    ]
 
 
-    # japanese_requests = [
-    #     {'title': 'Foo1',
-    #     'desc': 'Foo',
-    #     'views': 64},
-    #     {'title': 'Foo2',
-    #     'desc': 'Foo',
-    #     'views': 32},
-    #     {'title': 'Foo3',
-    #     'desc': 'Foo',
-    #     'views': 16},
-    # ]
+    japanese_requests = [
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 64},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
+    ]
 
 
-    # english_requests = [
-    #     {'title': 'Foo1',
-    #     'desc': 'Foo',
-    #     'views': 64},
-    #     {'title': 'Foo2',
-    #     'desc': 'Foo',
-    #     'views': 32},
-    #     {'title': 'Foo3',
-    #     'desc': 'Foo',
-    #     'views': 16},
-    # ]
+    english_requests = [
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 64},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
+    ]
 
-    # other_requests = [
-    #     {'title': 'Foo1',
-    #     'desc': 'Foo',
-    #     'views': 32},
-    #     {'title': 'Foo2',
-    #     'desc': 'Foo',
-    #     'views': 16},
-    #     {'title': 'Foo3',
-    #     'desc': 'Foo',
-    #     'views': 16},
+    other_requests = [
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 16},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
     ]
 
 

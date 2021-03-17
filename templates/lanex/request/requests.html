@@ -1,23 +1,11 @@
 <h2 class="align-self-start">Recent requests</h2>
-{% include "lanex/request/request-card.html"%}
 
 <div>
     {% if requests %} {% for r in requests %}
         {% include "lanex/request/request-card.html" with request=r %}
-        {% comment %} <li class="list">
-            {% if r.picture %}
-            <img class="list" src="{{ r.picture.url }}" />
-            {% else %}
-            <img class="list" src="{{ r.language.picture.url }}" />
-            {% endif %}
-            <h3 class="list">
-                <a href="{% url 'lanex:show_request' r.language.slug r.slug %}"> {{ r.title }}</a>
-            </h3>
-            <p class="list">{{ r.desc }}</p>
-            <p class="list">{{ r.creator }}</p>
-        </li> {% endcomment %}
-    {% endfor %} {% else %}
-    <li class="nav-item">There are no requests present.</li>
+    {% endfor %} 
+    {% else %}
+    <p>There are no requests present.</p>
     {% endif %}
 </div>
 {% comment %} 
