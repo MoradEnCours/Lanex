@@ -27,66 +27,66 @@ def populate():
 
 
     french_requests = [
-        {'title': 'Foo1',
-        'desc': 'Foo',
+        {'title': 'Study Group',
+        'desc': 'Pariatur enim Lorem proident minim.',
         'views': 128},
-        {'title': 'Foo2',
-        'desc': 'Foo',
+        {'title': 'Buddy for chat',
+        'desc': 'Non cupidatat sunt aliquip dolore ex ut cupidatat qui eu. Officia amet non non sunt do. Ut cillum sunt nisi dolore ipsum ad est adipisicing magna sint. Duis aliqua consectetur excepteur adipisicing exercitation qui consequat esse excepteur amet pariatur. Dolore ipsum eiusmod ea nisi. Adipisicing laboris dolore veniam quis.',
         'views': 64},
-        {'title': 'Foo3',
-        'desc': 'Foo',
+        {'title': 'Looking for a teacher',
+        'desc': 'Do velit duis culpa nostrud pariatur occaecat ea sunt nisi nisi. Fugiat aute officia laboris qui anim adipisicing enim quis ipsum mollit. Ullamco fugiat eiusmod mollit amet est occaecat nisi tempor excepteur incididunt ipsum.',
         'views': 32},
     ]
 
     
     spanish_requests = [
-        {'title': 'Foo1',
-        'desc': 'Foo',
-        'views': 64},
-        {'title': 'Foo2',
-        'desc': 'Foo',
-        'views': 32},
-        {'title': 'Foo3',
-        'desc': 'Foo',
-        'views': 16},
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 64},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
     ]
 
 
     japanese_requests = [
-        {'title': 'Foo1',
-        'desc': 'Foo',
-        'views': 64},
-        {'title': 'Foo2',
-        'desc': 'Foo',
-        'views': 32},
-        {'title': 'Foo3',
-        'desc': 'Foo',
-        'views': 16},
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 64},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
     ]
 
 
     english_requests = [
-        {'title': 'Foo1',
-        'desc': 'Foo',
-        'views': 64},
-        {'title': 'Foo2',
-        'desc': 'Foo',
-        'views': 32},
-        {'title': 'Foo3',
-        'desc': 'Foo',
-        'views': 16},
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 64},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
     ]
 
     other_requests = [
-        {'title': 'Foo1',
-        'desc': 'Foo',
-        'views': 32},
-        {'title': 'Foo2',
-        'desc': 'Foo',
-        'views': 16},
-        {'title': 'Foo3',
-        'desc': 'Foo',
-        'views': 16},
+        # {'title': 'Foo1',
+        # 'desc': 'Foo',
+        # 'views': 32},
+        # {'title': 'Foo2',
+        # 'desc': 'Foo',
+        # 'views': 16},
+        # {'title': 'Foo3',
+        # 'desc': 'Foo',
+        # 'views': 16},
     ]
 
 
@@ -94,7 +94,7 @@ def populate():
             'Spanish': {'requests': spanish_requests, 'picture': 'languages/spanish.jpg'},
             'Japanese': {'requests': japanese_requests, 'picture': 'languages/japanese.jpg'},
             'English': {'requests': english_requests, 'picture': 'languages/english.jpg'},
-            'Others': {'requests': other_requests, 'picture': 'languages/default.jpg'} }
+            # 'Others': {'requests': other_requests, 'picture': 'languages/default.jpg'} }
 
     '''
     Add users to test the site into a list and print confirmation to ensure user has been added

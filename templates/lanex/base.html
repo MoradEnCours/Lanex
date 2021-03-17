@@ -24,7 +24,7 @@
     
     <!-- Custom Styles -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    {%block head_block %}{% endblock %}
+    <link href="{% static 'css/post.css' %}" rel="stylesheet">
     </head>
     
     <body>    
@@ -47,9 +47,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'lanex:explore' %}">Explore</a>
             </li>
-            <li class="nav-item">
+            {% comment %} NO NEED FOR SEARCH PAGE {% endcomment %}
+            {% comment %} <li class="nav-item">
                 <a class="nav-link" href="{% url 'lanex:search' %}">Search</a>
-            </li>
+            </li> {% endcomment %}
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'lanex:show_user' user.username %}">{{ user.username }}</a>

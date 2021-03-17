@@ -17,32 +17,11 @@ Explore
 </div>
 
 <div class="container text-center">
-    <section id="requests" class="bg">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-            <h2>Most popular languages on the site</h2><br>
-                        <p class="card-text">
-                        {% if languages %}
-                        {% for l in languages %}
-                        <ul class="list">
-                            <li class="list">
-                            <img class="list" src="{{ l.picture.url }}" />
-                            <h3 class="list"><a class="nav-link active" href = "{% url 'lanex:show_language' l.slug %}">
-                            {{ l.name }}</a></h3>
-                            </li>
-                        </ul>
-                        {% endfor %}
-                    {% else %}
-                        <li class="nav-item">There are no languages present.</li>
-                    {% endif %}
-                    </ul>
-                    </p>
-            </div>
-        </div>
-    </div>
-    </section>
 
-    <br>
+    {% include "lanex/languages_view.html" %}
+    {% include "lanex/request/requests.html" %} 
+
+    {% comment %} <br>
     <section id="requests" class="bg-light">
     <div class="container">
         <div class="row">
@@ -75,7 +54,7 @@ Explore
         </div>
     </div>
     </section>
-</div>
+</div> {% endcomment %}
 
 
 

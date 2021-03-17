@@ -11,190 +11,22 @@
 
 {% block body_block %}
 {% if user.is_authenticated %}
-<div class="container text-center">
-    <div class="jumbotron p-4">
-        <div class="container">
-              <h1>Salut 
-                {% if user.first_name %}
-                {{ user.first_name }} {{ user.last_name }}!
-                {% else %}
-                {{ user.username }}!
-                {% endif %}
-                </h1>
-        </div>
-    </div>
-  <br>
+
+{% comment %} Alert - welcome message after login -> need som logic {% endcomment %}
+{% comment %} <div class="alert alert-success" role="alert">
+  Welcome back
+    {% if user.first_name %}
+    {{ user.first_name }} {{ user.last_name }}!
+    {% else %}
+    {{ user.username }}!
+    {% endif %}
+</div> {% endcomment %}
 
 
-{% include "lanex/languages_view.html" %} 
-
-<br>
-<section id="requests">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      {% if requests %}
-      <h2>Explore current hot language requests</h2><br>
-        <ul class="nav flex-column">
-            {% for r in requests %}
-                <ul class="list">
-                    <li class="list">
-                    {% if r.picture %}
-                    <img class="list" src="{{ r.picture.url }}" />
-                    {% else %}
-                    <img class="list" src="{{ r.language.picture.url }}" />
-                    {% endif %}
-                    <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
-                    {{ r.title }}</a></h3>
-                    <p class="list">{{ r.desc }}</p>
-                    </li>
-                </ul>
-            {% endfor %}
-      {% else %}
-            <li class="nav-item">No requests present it appears</li>
-      {% endif %}
-    </ul>
-    </div>
-  </div>
-</div>
-</section>
+  {% include "lanex/request/requests.html" %} 
 
 {% else %}
-
-  {% include "lanex/index/carousel.html" %} 
-  <section class="text-green">
-    <div class="container text-center">
-      <h1>Welcome to Lanex</h1>
-      <br>
-      <div class="row">
-          <div class="col">
-            <div class="container">
-                <form class='search' action="{% url 'lanex:search' %}" method="get">
-                    <input name="q" type="text"style="width: 700px;height: 50px;" placeholder="Search...">
-                    <br>
-                    <br>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" style="display: inline-block;border-radius: 4px;
-                    background-color: #1ea6f4;border: none;color: #FFFFFF;
-                    text-align: center;
-                    font-size: 16px;
-                    padding: 20px;
-                    width: 100px;
-                    transition: all 0.5s;cursor: pointer;
-                    margin: 5px;"><i class="fa fa-search"></i>search</button>
-                    <br>
-                </form>
-            </div>
-          </div>
-        </div>
-      <br>
-      <div class="row">
-        <div class="col">
-          <a href="{% url 'auth_login' %}" class="action-button shadow animate green" style="background-color: #4CAF50; /* Green */
-          border: none;
-          color: rgb(245, 245, 238);
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;">Login</a>
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col">
-          <a style="background-color: #4CAF50; /* Green */
-          border: none;
-          color: white;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;" href="{% url 'registration_register' %}" class="action-button shadow animate blue">Register</a>
-        </div>
-    </div>
-    <br>
-    <hr>
-    <br>
-  </div>
-</section>
-
-<section id="about" class="bg-warning">
-  <div class="container text-left">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Lanex</h2>
-          <p class="lead">What Lanex is about:</p>
-          <br>• A web application that enables users to connect with one another to exchange languages, 
-          helping to improve language knowledge and allow users to create new language buddies along 
-          the way
-          <br>• Users are able to set up language requests based on their languages of interest and preferred 
-          locations
-          <br>• Reqeust can be anything related to language learning: request to meet, have a online 
-          chat, join a study group, get recommendation, find a teacher etc.
-          <br>• Users have the ability to accept language requests created by other users to take part in 
-          language-related activities
-          <br>• Users are granted the facility to make comments on language requests
-          <br>• Users are provided with a search feature to make it easer to find language requests better 
-          geared towards their preferences
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="languages">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-        <h2>Supported languages</h2>
-        {% include "lanex/languages_view.html" %} 
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="requests" class="bg-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Recent language requests made by users</h2>
-          <p class="lead">Text expanding on this a bit </p>
-            <ul class="nav flex-column">
-            {% if requests %}
-                {% for r in requests %}
-                    <ul class="list">
-                        <li class="list">
-                        {% if r.picture %}
-                        <img class="list" src="{{ r.picture.url }}" />
-                        {% else %}
-                        <img class="list" src="{{ r.language.picture.url }}" />
-                        {% endif %}
-                        <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
-                        {{ r.title }}</a></h3>
-                        <p class="list">{{ r.desc }}</p>
-                        </li>
-                    </ul>
-                {% endfor %}
-            {% else %}
-                <li class="nav-item">There are no requests present.</li>
-            {% endif %}
-        </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {% endif %}
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-  <!-- Custom JavaScript for this theme -->
-  <script src="{% static 'js/scrolling-nav.js' %}"></script>
+  {% include "lanex/index/landing.html" %} 
+{% endif %}
 
 {% endblock %}
