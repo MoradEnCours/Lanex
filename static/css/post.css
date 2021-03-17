@@ -57,6 +57,8 @@ margin-right: 15px;
 }
 .post .post-description .stats .stat-item .icon {
 margin-right: 8px;
+font-size: 20px;
+color: #454545;
 }
 .post .post-footer {
 border-top: 1px solid #ddd;

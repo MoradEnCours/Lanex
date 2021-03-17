@@ -9,7 +9,6 @@
     <div class="col-sm-10 mb-4">
         <div class="panel panel-white post panel-shadow">
             <div class="post-heading">
-            
                 <div class="pull-left image">
                     {% if r.creator.picture %}
                     <img
@@ -28,22 +27,43 @@
 
                 <div class="pull-left meta">
                     <div class="title h5">
-                        <a href="#"><b>{{ r.creator }}</b></a>
+                        <a href="#"><b>{{ r.title }}</b></a>
                     </div>
-                    <h6 class="text-muted time">{{r.suggested_date}}</h6>
+                    <h6 class="text-muted time pull-left">{{r.creator}}</h6>
+                </div>
+
+                <div class="pull-right meta">
+                    <div class="title h5">
+                        <p>{{ r.language }}</p>
+                    </div>
+                </div>
+
+                <div class="pull-right image">
+                    {% if r.creator.picture %}
+                    <img src="{{ r.picture }}" class="avatar" alt="request image" />
+                    {% endif %}
                 </div>
             </div>
             <div class="post-description text-left">
-                <p>
-                   {{ r.desc }} 
-                </p>
+                <p>{{ r.desc }}</p>
                 <div class="stats">
-                    <a href="#" class="btn btn-default stat-item">
-                        <i class="fa fa-thumbs-up icon"></i>2
+                    <div class="btn btn-default stat-item">
+                        <i class="fa fa-eye icon"></i>{{r.views}}
+                    </div>
+                    <div class="btn btn-default stat-item">
+                        <i class="fa fa-calendar icon"></i>{{r.suggested_date}}
+                    </div>
+                    {% if r.location %}
+                    <a href="https://maps.google.com?q={{ r.location }}" class="btn btn-default stat-item">
+                        <i class="fa fa-map-marker icon"></i>Google Maps
                     </a>
-                    <a href="#" class="btn btn-default stat-item">
-                        <i class="fa fa-share icon"></i>12
-                    </a>
+                    {% comment %} <h6>
+                        <span data-feather="map-pin"></span
+                        ><a class="logo" >
+                            Open Google Maps
+                        </a>
+                    </h6> {% endcomment %}
+                    {% endif %}
                 </div>
             </div>
             {% comment %}
