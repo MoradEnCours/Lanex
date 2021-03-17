@@ -70,8 +70,18 @@
           <div class="col">
             <div class="container">
                 <form class='search' action="{% url 'lanex:search' %}" method="get">
-                    <input name="q" type="text" placeholder="Search...">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-search"></i></button>
+                    <input name="q" type="text"style="width: 700px;height: 50px;" placeholder="Search...">
+                    <br>
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" style="display: inline-block;border-radius: 4px;
+                    background-color: #1ea6f4;border: none;color: #FFFFFF;
+                    text-align: center;
+                    font-size: 16px;
+                    padding: 20px;
+                    width: 100px;
+                    transition: all 0.5s;cursor: pointer;
+                    margin: 5px;"><i class="fa fa-search"></i>search</button>
+                    <br>
                 </form>
             </div>
           </div>
@@ -79,14 +89,28 @@
       <br>
       <div class="row">
         <div class="col">
-          <a href="{% url 'auth_login' %}" class="action-button shadow animate green">Login</a>
+          <a href="{% url 'auth_login' %}" class="action-button shadow animate green" style="background-color: #4CAF50; /* Green */
+          border: none;
+          color: rgb(245, 245, 238);
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;">Login</a>
         </div>
     </div>
     <br>
     <br>
     <div class="row">
         <div class="col">
-          <a style="background-color: #3f4375;border-bottom: 5px solid #1560BD;text-shadow: 0px -2px #1560BD;" href="{% url 'registration_register' %}" class="action-button shadow animate blue">Register</a>
+          <a style="background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;" href="{% url 'registration_register' %}" class="action-button shadow animate blue">Register</a>
         </div>
     </div>
     <br>
@@ -96,14 +120,25 @@
 </section>
 
 <section id="about" class="bg-warning">
+  <div class="container text-left">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>About Lanex</h2>
-          <p class="lead">Text describing what Lanex is about:</p>
-              Filler text <br>
-              It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair<br>
-
+          <h2>Lanex</h2>
+          <p class="lead">What Lanex is about:</p>
+          <br>• A web application that enables users to connect with one another to exchange languages, 
+          helping to improve language knowledge and allow users to create new language buddies along 
+          the way
+          <br>• Users are able to set up language requests based on their languages of interest and preferred 
+          locations
+          <br>• Reqeust can be anything related to language learning: request to meet, have a online 
+          chat, join a study group, get recommendation, find a teacher etc.
+          <br>• Users have the ability to accept language requests created by other users to take part in 
+          language-related activities
+          <br>• Users are granted the facility to make comments on language requests
+          <br>• Users are provided with a search feature to make it easer to find language requests better 
+          geared towards their preferences
+          </div>
         </div>
       </div>
     </div>
