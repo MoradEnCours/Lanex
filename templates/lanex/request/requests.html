@@ -1,6 +1,7 @@
-<h2 class="align-self-start">Recent requests</h2>
+<h3 class="align-self-start ml-5 mb-3">Recent requests</h3>
 
 <div>
+    {% include "lanex/search/search_input.html" %}
     {% if requests %} {% for r in requests %}
         {% include "lanex/request/request-card.html" with request=r %}
     {% endfor %} 

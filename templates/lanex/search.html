@@ -5,36 +5,27 @@
     Search
 {% endblock %}
 {% block body_block %}
+{% comment %} UNUSED!!! {% endcomment %}
+
 <div class="container text-center">
-<div class="jumbotron p-4">
+ <div class="jumbotron p-4">
     <div class="container">
     <h1 class="jumbotron-heading">Search Lanex</h1>
-    <h3>Find relevant language requests</h3>
-    <p>For example, try writing French or London and see what results appear</p>
+    <p>Find relevant language requests</p>
     </div>
-</div>
-<div class="container">
-    <form class='search' action="{% url 'lanex:search' %}" method="get">
-        <input name="q" type="text" placeholder="Search...">
-        <button class="btn btn-lg btn-primary btn-block" style="background-color: #008CBA;font-size: 12px;border-radius: 8px;" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-</div>
+</div> 
+
+
+
+
+{% include "lanex/search/search_input.html" %}
+
 <br>
 <div>
     {% if requests %}
-        <h2>Results for: {{ query }}</h2>
-        <br>
-        <div>
-            <ul>
             {% for request in requests %}
-                <div class="list-group-item">
-                    <li><h3 class="list-group-item-heading">
-                        <a href="{% url 'lanex:show_request' request.language.slug request.slug %}">{{ request.title }}</a>
-                    </h3></li>
-                </div>
+                {% include "lanex/request/request-card.html" with r=request %}
             {% endfor %}
-            </ul>
-        </div>
     {% else %}
         {% if query %}
         <h3>We're sorry, we couldn't find any search results for: {{ query }}</h3>

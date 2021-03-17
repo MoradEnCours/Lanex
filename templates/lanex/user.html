@@ -36,40 +36,21 @@
         {% endif %}
         </div>
     </div>
-    <ul>
     {% if user_profile %}
     <section id="requests" class="bg">
-        <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                <h2>User's requests</h2>
-                <ul class="nav flex-column">
+                <h4>User's requests</h4>
                     {% if requests %}
                         {% for request in requests %}
-                        <ul class="list">
-                            <li class="list">
-                            {% if request.picture %}
-                            <img class="list" src="{{ request.picture.url }}" />
-                            {% else %}
-                            <img class="list" src="{{ request.language.picture.url }}" />
-                            {% endif %}
-                            <h3 class="list"><a href="{% url 'lanex:show_request' request.language.slug request.slug %}">
-                            {{ request.title }}</a></h3>
-                            <p class="list">{{ request.desc }}</p>
-                            </li>
-                        </ul>
+                       {% include "lanex/request/request-card.html" with r=request %}
                         {% endfor %}
                     {% else %}
                         <li class="nav-item">There are no requests present.</li>
                     {% endif %}
-                </ul>
-                </div>
             </div>
-        </div>
     {% else %}
     User has made no requests.<br />
     {% endif %}
     </section>
-    </ul>
 </div>
 {% endblock %}

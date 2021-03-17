@@ -11,88 +11,22 @@
 
 {% block body_block %}
 {% if user.is_authenticated %}
-  <div class="container text-center">
-      <div class="jumbotron p-4">
-          <div class="container">
-                <h1>Salut 
-                  {% if user.first_name %}
-                  {{ user.first_name }} {{ user.last_name }}!
-                  {% else %}
-                  {{ user.username }}!
-                  {% endif %}
-                  </h1>
-          </div>
-      </div>
-    <br>
 
-<section id="about" class="bg-warning">
-  <div class="container text-left">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Lanex</h2>
-          <p class="lead">What Lanex is about:</p>
-          <br>• A web application that enables users to connect with one another to exchange languages, 
-          helping to improve language knowledge and allow users to create new language buddies along 
-          the way
-          <br>• Users are able to set up language requests based on their languages of interest and preferred 
-          locations
-          <br>• Reqeust can be anything related to language learning: request to meet, have a online 
-          chat, join a study group, get recommendation, find a teacher etc.
-          <br>• Users have the ability to accept language requests created by other users to take part in 
-          language-related activities
-          <br>• Users are granted the facility to make comments on language requests
-          <br>• Users are provided with a search feature to make it easer to find language requests better 
-          geared towards their preferences
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+{% comment %} Alert - welcome message after login -> need som logic {% endcomment %}
+{% comment %} <div class="alert alert-success" role="alert">
+  Welcome back
+    {% if user.first_name %}
+    {{ user.first_name }} {{ user.last_name }}!
+    {% else %}
+    {{ user.username }}!
+    {% endif %}
+</div> {% endcomment %}
 
-  <br>
-  <section id="requests">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          {% if requests %}
-          <h2>Explore current hot language requests</h2><br>
-            <ul class="nav flex-column">
-                {% for r in requests %}
-                    <ul class="list">
-                        <li class="list">
-                        {% if r.picture %}
-                        <img class="list" src="{{ r.picture.url }}" />
-                        {% else %}
-                        <img class="list" src="{{ r.language.picture.url }}" />
-                        {% endif %}
-                        <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
-                        {{ r.title }}</a></h3>
-                        <p class="list">{{ r.desc }}</p>
-                        </li>
-                    </ul>
-                {% endfor %}
-          {% else %}
-                <li class="nav-item">No requests present it appears</li>
-          {% endif %}
-        </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-    {% include "lanex/request/requests.html" %} 
+
+  {% include "lanex/request/requests.html" %} 
 
 {% else %}
   {% include "lanex/index/landing.html" %} 
-  {% endif %}
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-
-  <!-- Custom JavaScript for this theme -->
-  <script src="{% static 'js/scrolling-nav.js' %}"></script>
+{% endif %}
 
 {% endblock %}

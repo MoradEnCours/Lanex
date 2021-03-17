@@ -252,7 +252,7 @@ def search(request):
         request_list = LanguageRequest.objects.filter(Q(title__icontains=query) | Q(desc__icontains=query)) 
         return render(request, 'lanex/search.html', {'query': query,'requests': request_list}) 
     
-    return render(request, 'lanex/search.html', {'query': query, 'requests': request_list})
+    return render(request, 'lanex/index.html', {'query': query, 'requests': request_list})
 
 
 '''

@@ -5,6 +5,9 @@
     type="text/css"
     href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 />
+
+{% comment %} <a href="{% url 'lanex:show_request' r.language.slug r.slug %}"> </a> {% endcomment %}
+
 <div class="container bootstrap snippets bootdey">
     <div class="col-sm-10 mb-4">
         <div class="panel panel-white post panel-shadow">
@@ -27,7 +30,9 @@
 
                 <div class="pull-left meta">
                     <div class="title h5">
-                        <a href="#"><b>{{ r.title }}</b></a>
+                        <a href="{% url 'lanex:show_request' r.language.slug r.slug %}"
+                            ><b>{{ r.title }}</b></a
+                        >
                     </div>
                     <h6 class="text-muted time pull-left">{{r.creator}}</h6>
                 </div>
@@ -54,16 +59,17 @@
                         <i class="fa fa-calendar icon"></i>{{r.suggested_date}}
                     </div>
                     {% if r.location %}
-                    <a href="https://maps.google.com?q={{ r.location }}" class="btn btn-default stat-item">
+                    <a
+                        href="https://maps.google.com?q={{ r.location }}"
+                        class="btn btn-default stat-item"
+                    >
                         <i class="fa fa-map-marker icon"></i>Google Maps
                     </a>
-                    {% comment %} <h6>
-                        <span data-feather="map-pin"></span
-                        ><a class="logo" >
-                            Open Google Maps
-                        </a>
-                    </h6> {% endcomment %}
-                    {% endif %}
+                    {% comment %}
+                    <h6>
+                        <span data-feather="map-pin"></span><a class="logo"> Open Google Maps </a>
+                    </h6>
+                    {% endcomment %} {% endif %}
                 </div>
             </div>
             {% comment %}
