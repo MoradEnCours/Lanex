@@ -4,6 +4,9 @@
 {% block title_block %}
     Add A Request
 {% endblock %}
+{% block head_block %}
+{{ form.media }}
+{% endblock %}
 {% block body_block %}
 <div class="container text-center">
     <div class="jumbotron p-4">
@@ -18,7 +21,8 @@
             <form id="add_request_form" method="POST" action="{% url 'lanex:add_request' %}" enctype="multipart/form-data">
             {% endif %}
                 {% csrf_token %}
-                <button type="submit" style="display: inline-block;border-radius: 4px;background-color: #1ea6f4;border: none;color: #FFFFFF;text-align: center;font-size: 28px;padding: 20px;width: 200px;transition: all 0.5s;cursor: pointer;margin: 5px;"class="btn btn-success">Create a request</button>
+                {{ form }}}
+                <button type="submit" class="btn btn-success">Create a request</button>
             </form>
         </div>
     </div>

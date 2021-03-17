@@ -1,5 +1,6 @@
 {% extends 'lanex/base.html' %}
 
+{% load static %}
 {% block title_block %}
     Login
 {% endblock %}
@@ -9,17 +10,11 @@
         <div class="container">
              <h1 class="jumbotron-heading">Login</h1>
         </div>
-    </div>
-
-    <div class="container">
-    <form class="form-signin" role="form" method="post" action=".">
-            {% csrf_token %}
-            <label for="inputUsername" class="sr-only">Username</label>
-            <input type="text" name="username" id="id_username" class="form-control"
-                placeholder="Username" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="id_password" class="form-control"
-                placeholder="Password" required>
+        <hr><br /><br />
+        <form class="form-signin" role="form" method="post" action=".">
+        {% csrf_token %}
+            {{ form }}
+            <br />
             <button class="btn btn-lg btn-primary btn-block" type="submit"
                 value="Submit" style="display: inline-block;border-radius: 4px;
                 background-color: #1ea6f4;border: none;color: #FFFFFF;
@@ -29,10 +24,11 @@
                 width: 100px;
                 transition: all 0.5s;cursor: pointer;
                 margin: 5px;">Sign in</button>
+
+            <br>
+
         </form>
+        <a class="btn btn-lg btn-primary btn-block" href="{% url 'registration_register' %}">Register Here</a>
+        <br>
     </div>
-<p>
-Not registered?
-<a href="{% url 'registration_register' %}">Register here!</a>
-</p>
 {% endblock %}

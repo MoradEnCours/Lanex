@@ -1,19 +1,20 @@
 {% extends 'lanex/base.html' %}
+{% load static %}
+
 {% block title_block %}
     Register
 {% endblock %}
+
 {% block body_block %}
+<div class="container text-center">
     <div class="jumbotron p-4">
         <div class="container">
              <h1 class="jumbotron-heading">Register Here</h1>
         </div>
-    </div>
-
-<div class="container">
-    <div class="row">
-    <div class="form-group" >
-    <form role="form" method="post" action=".">
+        <hr><br /><br />
+        <form class="form-registration_register" role="form" method="post" action=".">
         {% csrf_token %}
+
         <div class="form-group">
         <p class="required"><label class="required" for="id_username">
             Username:</label>
@@ -52,7 +53,12 @@
         transition: all 0.5s;cursor: pointer;
         margin: 5px;">Submit</button>
     </form>
+
+<!--             {{ form }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Register here</button>
+            <br>
+        </form> -->
+
     </div>
-</div>
 </div>
 {% endblock %}
