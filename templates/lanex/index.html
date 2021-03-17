@@ -11,60 +11,68 @@
 
 {% block body_block %}
 {% if user.is_authenticated %}
-<div class="container text-center">
-    <div class="jumbotron p-4">
-        <div class="container">
-              <h1>Salut 
-                {% if user.first_name %}
-                {{ user.first_name }} {{ user.last_name }}!
-                {% else %}
-                {{ user.username }}!
-                {% endif %}
-                </h1>
-        </div>
-    </div>
+  <div class="container text-center">
+      <div class="jumbotron p-4">
+          <div class="container">
+                <h1>Salut 
+                  {% if user.first_name %}
+                  {{ user.first_name }} {{ user.last_name }}!
+                  {% else %}
+                  {{ user.username }}!
+                  {% endif %}
+                  </h1>
+          </div>
+      </div>
+    <br>
+
+
+  {% include "lanex/languages_view.html" %} 
+
   <br>
-
-
-{% include "lanex/languages_view.html" %} 
-
-<br>
-<section id="requests">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      {% if requests %}
-      <h2>Explore current hot language requests</h2><br>
-        <ul class="nav flex-column">
-            {% for r in requests %}
-                <ul class="list">
-                    <li class="list">
-                    {% if r.picture %}
-                    <img class="list" src="{{ r.picture.url }}" />
-                    {% else %}
-                    <img class="list" src="{{ r.language.picture.url }}" />
-                    {% endif %}
-                    <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
-                    {{ r.title }}</a></h3>
-                    <p class="list">{{ r.desc }}</p>
-                    </li>
-                </ul>
-            {% endfor %}
-      {% else %}
-            <li class="nav-item">No requests present it appears</li>
-      {% endif %}
-    </ul>
+  <section id="requests">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          {% if requests %}
+          <h2>Explore current hot language requests</h2><br>
+            <ul class="nav flex-column">
+                {% for r in requests %}
+                    <ul class="list">
+                        <li class="list">
+                        {% if r.picture %}
+                        <img class="list" src="{{ r.picture.url }}" />
+                        {% else %}
+                        <img class="list" src="{{ r.language.picture.url }}" />
+                        {% endif %}
+                        <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
+                        {{ r.title }}</a></h3>
+                        <p class="list">{{ r.desc }}</p>
+                        </li>
+                    </ul>
+                {% endfor %}
+          {% else %}
+                <li class="nav-item">No requests present it appears</li>
+          {% endif %}
+        </ul>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-</section>
+  </section>
+    {% include "lanex/request/requests.html" %} 
 
 {% else %}
 
   {% include "lanex/index/carousel.html" %} 
+
+
+
+  <div class="container mt-5">
+  
+
+ {% include "lanex/request/requests.html" %} 
   <section class="text-green">
     <div class="container text-center">
-      <h1>Welcome to Lanex</h1>
+
       <br>
       <div class="row">
           <div class="col">
@@ -77,18 +85,7 @@
           </div>
         </div>
       <br>
-      <div class="row">
-        <div class="col">
-          <a href="{% url 'auth_login' %}" class="action-button shadow animate green">Login</a>
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col">
-          <a style="background-color: #3f4375;border-bottom: 5px solid #1560BD;text-shadow: 0px -2px #1560BD;" href="{% url 'registration_register' %}" class="action-button shadow animate blue">Register</a>
-        </div>
-    </div>
+
     <br>
     <hr>
     <br>
@@ -100,25 +97,13 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2>About Lanex</h2>
-          <p class="lead">Text describing what Lanex is about:</p>
-              Filler text <br>
               It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair<br>
-
         </div>
       </div>
     </div>
   </section>
 
-  <section id="languages">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-        <h2>Supported languages</h2>
-        {% include "lanex/languages_view.html" %} 
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section id="requests" class="bg-white">
     <div class="container">
@@ -151,6 +136,22 @@
     </div>
   </section>
 
+    <section id="languages">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+        <h2>Supported languages</h2>
+        {% include "lanex/languages_view.html" %} 
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+  
+  </div>
+ 
   {% endif %}
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
