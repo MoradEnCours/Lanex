@@ -1,21 +1,42 @@
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+{% load static %}
+
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+/>
 <div class="container bootstrap snippets bootdey">
-    <div class="col-sm-8">
+    <div class="col-sm-10 mb-4">
         <div class="panel panel-white post panel-shadow">
             <div class="post-heading">
+            
                 <div class="pull-left image">
-                    <img src="https://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    {% if r.creator.picture %}
+                    <img
+                        src="{{ r.creator.picture }}"
+                        class="rounded-circle avatar"
+                        alt="user profile image"
+                    />
+                    {% else %}
+                    <img
+                        src="{% static 'images/avatar.png' %}"
+                        class="rounded-circle avatar"
+                        alt="user profile image"
+                    />
+                    {% endif %}
                 </div>
+
                 <div class="pull-left meta">
                     <div class="title h5">
-                        <a href="#"><b>Ryan Haywood</b></a>
-                        made a post.
+                        <a href="#"><b>{{ r.creator }}</b></a>
                     </div>
                     <h6 class="text-muted time">1 minute ago</h6>
                 </div>
-            </div> 
-            <div class="post-description"> 
-                <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+            </div>
+            <div class="post-description text-left">
+                <p>
+                   {{ r.desc }} 
+                </p>
                 <div class="stats">
                     <a href="#" class="btn btn-default stat-item">
                         <i class="fa fa-thumbs-up icon"></i>2
@@ -25,17 +46,22 @@
                     </a>
                 </div>
             </div>
+            {% comment %}
             <div class="post-footer">
-                <div class="input-group"> 
-                    <input class="form-control" placeholder="Add a comment" type="text">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Add a comment" type="text" />
                     <span class="input-group-addon">
-                        <a href="#"><i class="fa fa-edit"></i></a>  
+                        <a href="#"><i class="fa fa-edit"></i></a>
                     </span>
                 </div>
                 <ul class="comments-list">
                     <li class="comment">
                         <a class="pull-left" href="#">
-                            <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                            <img
+                                class="avatar"
+                                src="https://bootdey.com/img/Content/user_1.jpg"
+                                alt="avatar"
+                            />
                         </a>
                         <div class="comment-body">
                             <div class="comment-heading">
@@ -47,7 +73,11 @@
                         <ul class="comments-list">
                             <li class="comment">
                                 <a class="pull-left" href="#">
-                                    <img class="avatar" src="https://bootdey.com/img/Content/user_3.jpg" alt="avatar">
+                                    <img
+                                        class="avatar"
+                                        src="https://bootdey.com/img/Content/user_3.jpg"
+                                        alt="avatar"
+                                    />
                                 </a>
                                 <div class="comment-body">
                                     <div class="comment-heading">
@@ -56,10 +86,14 @@
                                     </div>
                                     <p>Relax my friend</p>
                                 </div>
-                            </li> 
+                            </li>
                             <li class="comment">
                                 <a class="pull-left" href="#">
-                                    <img class="avatar" src="https://bootdey.com/img/Content/user_2.jpg" alt="avatar">
+                                    <img
+                                        class="avatar"
+                                        src="https://bootdey.com/img/Content/user_2.jpg"
+                                        alt="avatar"
+                                    />
                                 </a>
                                 <div class="comment-body">
                                     <div class="comment-heading">
@@ -68,11 +102,12 @@
                                     </div>
                                     <p>Ok, cool.</p>
                                 </div>
-                            </li> 
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
+            {% endcomment %}
         </div>
     </div>
 </div>

@@ -1,0 +1,56 @@
+{% include "lanex/index/carousel.html" %}
+
+<div class="container mt-4 d-flex flex-column align-items-center w-75 p-3">
+    {% include "lanex/request/requests.html" %}
+
+    <div class="row">
+        <section class="text-green">
+            <div class="container text-center">
+                <br />
+                <div class="row">
+                    <div class="col">
+                        <div class="container">
+                            <form class="search" action="{% url 'lanex:search' %}" method="get">
+                                <input name="q" type="text" placeholder="Search..." />
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <br />
+                <hr />
+                <br />
+            </div>
+        </section>
+    </div>
+{% comment %} 
+    <section id="about" class="bg-warning">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>About Lanex</h2>
+                    It was the best of times, it was the worst of times, it was the age of wisdom,
+                    it was the age of foolishness, it was the epoch of belief, it was the epoch of
+                    incredulity, it was the season of Light, it was the season of Darkness, it was
+                    the spring of hope, it was the winter of despair<br />
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+
+    <section id="languages">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>Supported languages</h2>
+                    {% include "lanex/languages_view.html" %}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

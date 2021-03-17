@@ -27,6 +27,7 @@ def index(request):
     context_dict = {}
     context_dict['languages'] = language_list
     context_dict['requests'] = request_list
+    print(context_dict)
     return render(request, 'lanex/index.html', context=context_dict)
 
 
@@ -112,6 +113,8 @@ def show_request(request, language_name_slug, request_name_slug):
     
     except LanguageRequest.DoesNotExist:
         context_dict['request'] = None
+
+    print(context_dict)
     
     return render(request, 'lanex/request.html', context=context_dict)
 
