@@ -94,7 +94,7 @@ def populate():
             'Spanish': {'requests': spanish_requests, 'picture': 'languages/spanish.jpg'},
             'Japanese': {'requests': japanese_requests, 'picture': 'languages/japanese.jpg'},
             'English': {'requests': english_requests, 'picture': 'languages/english.jpg'},
-            'Others': {'requests': other_requests, 'picture': 'languages/default.jpg'} }
+             'Others': {'requests': other_requests, 'picture': 'languages/default.jpg'} }
 
     '''
     Add users to test the site into a list and print confirmation to ensure user has been added
