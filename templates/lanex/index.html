@@ -11,18 +11,6 @@
 
 {% block body_block %}
 {% if user.is_authenticated %}
-
-{% comment %} Alert - welcome message after login -> need som logic {% endcomment %}
-{% comment %} <div class="alert alert-success" role="alert">
-  Welcome back
-    {% if user.first_name %}
-    {{ user.first_name }} {{ user.last_name }}!
-    {% else %}
-    {{ user.username }}!
-    {% endif %}
-</div> {% endcomment %}
-
-
   {% include "lanex/request/requests.html" %} 
 
 {% else %}

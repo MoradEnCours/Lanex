@@ -6,55 +6,17 @@ Explore
 {% endblock %}
 {% block body_block %}
 <div class="container text-center">
-    <div class="jumbotron p-4 bg-info">
+    <div class="jumbotron p-3 jumbo-bg jumbo-bg">
         <div class="container">
-            <h1 class="activity">Explore some of the language request activities</h1>
-            <div>
-            <strong class="activity">Language request activity things-related shown with most popular languages and requests</strong>
-            </div>
+            <h2 class="activity">Explore some of the language request activities</h2>
         </div>
     </div>
 </div>
 
 <div class="container text-center">
-
     {% include "lanex/languages_view.html" %}
     {% include "lanex/request/requests.html" %} 
-
-    {% comment %} <br>
-    <section id="requests" class="bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-            <h2>Most Viewed Requests</h2><br>
-                        <p class="card-text">
-                        {% if requests %}
-                            {% for r in requests %}
-                            {% if r.completed == False %}
-                            <ul class="list">
-                                <li class="list">
-                                {% if r.picture %}
-                                <img class="list" src="{{ r.picture.url }}" />
-                                {% else %}
-                                <img class="list" src="{{ r.language.picture.url }}" />
-                                {% endif %}
-                                <h3 class="list"><a href="{% url 'lanex:show_request' r.language.slug r.slug %}">
-                                {{ r.title }}</a></h3>
-                                <p class="list">{{ r.desc }}</p>
-                                </li>
-                            </ul>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <li class="nav-item">There are no requests present.</li>
-                        {% endif %}
-                        </ul>
-                        </p>
-            </div>
-        </div>
-    </div>
-    </section>
-</div> {% endcomment %}
+</div>
 
 
 

@@ -7,12 +7,12 @@
 
 {% block body_block %}
 {% if user %}
-    <div class="jumbotron p-4">
+    <div class="jumbotron p-3 jumbo-bg">
         <div class="container text-center">
             <h1 class="jumbotron-heading">{{ user.username }} Settings</h1>
         </div>
     </div>
-    <div class="jumbotron p-4">
+    <div class="jumbotron p-3 jumbo-bg">
         <div class="container">
 <form id="update_user_form" method="POST" action="{% url 'lanex:user_settings' user.username %}" enctype="multipart/form-data">
     {% csrf_token %}

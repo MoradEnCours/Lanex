@@ -2,10 +2,7 @@
     <div class="wrapper">
 
         <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <a class="logo" href="{% url 'lanex:index' %}">
-                    <span style="margin-left:5%" class="menu-collapsed">Lanex</span>
-                </a>
+            <ul class="nav flex-column ">
                 <hr>
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -21,11 +18,23 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lanex:about' %}">
+                            <span data-feather="activity"></span>
+                            About
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'lanex:search' %}">
                             <span data-feather="search"></span>
                             Search
                         </a>
 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lanex:add_request' %}">
+                            <span data-feather="plus"></span>
+                            Add a Request
+                        </a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -34,12 +43,7 @@
                             {{ user.username }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'lanex:add_request' %}">
-                            <span data-feather="plus"></span>
-                            Add a Request
-                        </a>
-                    </li>
+ 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'auth_password_change' %}">
                             <span data-feather="lock"></span>
