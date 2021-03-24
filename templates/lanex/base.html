@@ -20,13 +20,14 @@
     <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for dashboard template -->
     <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
 
     <!-- Custom Styles -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/post.css' %}" rel="stylesheet">
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
     {% block head_block %}{% endblock %}
 </head>
 
@@ -47,7 +48,7 @@
         {% endif %}
     </div>
 
-    {% include "lanex/base/footer.html" %}
+    <!-- {% include "lanex/base/footer.html" %} -->
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->

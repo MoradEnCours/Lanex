@@ -1,34 +1,23 @@
-{% extends 'lanex/base.html' %}
-
-{% load static %}
-{% block title_block %}
-    Login
-{% endblock %}
-
-{% block body_block %}
-    <div class="jumbotron p-3 jumbo-bg">
-        <div class="container">
-             <h1 class="jumbotron-heading">Login</h1>
-        </div>
-        <hr><br /><br />
-        <form class="form-signin" role="form" method="post" action=".">
-        {% csrf_token %}
-            {{ form }}
-            <br />
-            <button class="btn btn-lg btn-primary btn-block" type="submit"
-                value="Submit" style="display: inline-block;border-radius: 4px;
-                background-color: #1ea6f4;border: none;color: #FFFFFF;
-                text-align: center;
-                font-size: 16px;
-                padding: 20px;
-                width: 100px;
-                transition: all 0.5s;cursor: pointer;
-                margin: 5px;">Sign in</button>
-
-            <br>
-
-        </form>
-        <a class="btn btn-lg btn-primary btn-block" href="{% url 'registration_register' %}">Register Here</a>
-        <br>
+{% extends 'lanex/base.html' %} {% load static %} {% block title_block %} Login {% endblock %} {% block body_block %}
+<div class="sidenav">
+    <div class="login-main-text">
+        <h2>Lanex</h2>
+        <p>Your success in learning languages continues here.</p>
     </div>
+</div>
+
+<div class="main">
+    <div class="col-md-6 col-sm-12 mx-auto">
+        <img class="login-logo" src="/static/images/logo.png" />
+
+        <div class="login-form">
+            <form class="form-signin" role="form" method="post" action=".">
+                {% csrf_token %}
+                <div class="form-group">{{ form }}</div>
+                <button type="submit" class="btn btn-black">Login</button>
+                <a href="/accounts/register" class="btn btn-secondary">Register</a>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

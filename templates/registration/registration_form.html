@@ -1,64 +1,43 @@
-{% extends 'lanex/base.html' %}
-{% load static %}
+{% extends 'lanex/base.html' %} {% load static %} {% block title_block %} Register {% endblock %} {% block body_block %}
 
-{% block title_block %}
-    Register
-{% endblock %}
-
-{% block body_block %}
-<div class="container text-center">
-    <div class="jumbotron p-3 jumbo-bg">
-        <div class="container">
-             <h1 class="jumbotron-heading">Register Here</h1>
-        </div>
-        <hr><br /><br />
-        <form class="form-registration_register" role="form" method="post" action=".">
-        {% csrf_token %}
-
-        <div class="form-group">
-        <p class="required"><label class="required" for="id_username">
-            Username:</label>
-        <input class="form-control" id="id_username" maxlength="30"
-             name="username" type="text" />
-        <span class="helptext">
-            Required. 30 characters or fewer.
-            Letters, digits and @/./+/-/_ only.
-        </span>
-        </p>
-        <p class="required"><label class="required" for="id_email">
-            E-mail:</label>
-        <input class="form-control" id="id_email" name="email" type="email" />
-        </p>
-        <p class="required"><label class="required" for="id_password1">
-            Password:</label>
-        <input class="form-control" id="id_password1" name="password1"
-            type="password" />
-        </p>
-        <p class="required">
-        <label class="required" for="id_password2">
-            Password confirmation:</label>
-        <input class="form-control" id="id_password2" name="password2" 
-            type="password" />
-        <span class="helptext">
-            Enter the same password as before, for verification.
-        </span>
-        </p>
-        </div>
-        <button type="submit" class="btn btn-primary" style="display: inline-block;border-radius: 4px;
-        background-color: #1ea6f4;border: none;color: #FFFFFF;
-        text-align: center;
-        font-size: 16px;
-        padding: 20px;
-        width: 100px;
-        transition: all 0.5s;cursor: pointer;
-        margin: 5px;">Submit</button>
-    </form>
-
-<!--             {{ form }}
-            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Register here</button>
-            <br>
-        </form> -->
-
+<div class="sidenav">
+    <div class="login-main-text">
+        <h2>Lanex</h2>
+        <p>Your success in learning languages starts here.</p>
     </div>
 </div>
+
+<div class="main">
+    <div class="col-md-6 col-sm-12 mx-auto">
+        <img class="register-logo" src="/static/images/logo.png" />
+
+        <div class="login-form">
+            <form class="form-registration_register" role="form" method="post" action=".">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <p class="required">
+                        <label class="required" for="id_username"> Username:</label>
+                        <input class="form-control" id="id_username" maxlength="30" name="username" type="text" />
+                    </p>
+                    <p class="required">
+                        <label class="required" for="id_email"> E-mail:</label>
+                        <input class="form-control" id="id_email" name="email" type="email" />
+                    </p>
+                    <p class="required">
+                        <label class="required" for="id_password1"> Password:</label>
+                        <input class="form-control" id="id_password1" name="password1" type="password" />
+                    </p>
+                    <p class="required">
+                        <label class="required" for="id_password2"> Password confirmation:</label>
+                        <input class="form-control" id="id_password2" name="password2" type="password" />
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-black">Register</button>
+                <a href="/accounts/login" class="btn btn-secondary">Login</a>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

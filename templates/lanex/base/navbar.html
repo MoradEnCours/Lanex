@@ -1,26 +1,24 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+        class="navbar-toggler navbar-toggler-right"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a style="color: rgb(241, 237, 237);" class="logo" href="{% url 'lanex:index' %}">
+    <a style="color: rgb(241, 237, 237)" class="logo" href="{% url 'lanex:index' %}">
         <span class="menu-collapsed">Lanex</span>
     </a>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="{% url 'lanex:index' %}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'lanex:about' %}">About</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'lanex:explore' %}">Explore</a>
-            </li> -->
-            {% comment %} NO NEED FOR SEARCH PAGE {% endcomment %}
-            {% comment %} <li class="nav-item">
-                <a class="nav-link" href="{% url 'lanex:search' %}">Search</a>
-            </li> {% endcomment %}
+            </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'lanex:show_user' user.username %}">{{ user.username }}</a>
@@ -28,15 +26,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'auth_password_change' %}">Change Password</a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'auth_logout' %}?next={% url 'lanex:index' %}">Logout</a>
             </li>
             {% else %}
-             <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'lanex:index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'lanex:about' %}">About</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
             </li>
             {% endif %}
         </ul>
     </div>
-
 </nav>

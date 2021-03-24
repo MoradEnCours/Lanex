@@ -64,7 +64,8 @@ Tests are provided, and to run them simply enter the following into command prom
 * [jQuery](https://github.com/jquery/jquery)
 * [Bootstrap](https://github.com/twbs/bootstrap)
 * [Bootdey](https://www.bootdey.com/snippets/view/Social-post)
-* [Bootstrap Dashboard](https://getbootstrap.com/docs/4.2/examples/dashboard/) (Just to make sure we are covered..)
+* [Bootstrap-examples](https://getbootstrap.com/docs/4.2/examples/dashboard/)
+* [Bootsnipp](https://bootsnipp.com/snippets/7nk08)
 
 
 
