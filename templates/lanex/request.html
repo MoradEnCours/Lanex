@@ -30,7 +30,7 @@
           <h6><span data-feather="calendar"></span> {{ request.suggested_date }}</h6>
         {% endif %}
         <h6><span data-feather="eye"></span> {{ request.views }}</h6>
-        <h6>{{ request.desc }}</h6>
+        <h6>{{ request.description }}</h6>
         {% if request.picture %}
           <img class="request" src="{{ request.picture.url }}">
         {% endif %}
@@ -77,16 +77,19 @@
       <div class="card-body">
         {% if new_comment %}
         <div class="alert alert-success" role="alert">
-          Currently processing comment to see if it's user-friendly
+          Comment added successfully!
         </div>
-        {% else %}
+		
+		{% endif %}
+		
         <h3>Leave a comment</h3>
         <form method="post" style="margin-top: 1.3em;">
           {{ comment_form.as_p }}
           {% csrf_token %}
           <button type="submit" class="btn btn-primary  btn-lg">Click to comment</button>
         </form>
-        {% endif %}
+		
+		
       </div>
     </div>
     {% endif %}

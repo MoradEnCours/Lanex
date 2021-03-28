@@ -5,7 +5,7 @@ class LanguageAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
 
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ['title', 'language', 'desc']
+    list_display = ['title', 'language', 'description']
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('creator', 'body', 'request', 'created_on', 'active')

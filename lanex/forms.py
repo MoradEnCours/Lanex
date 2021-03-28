@@ -22,7 +22,7 @@ Form for adding a request with the language specified, listing the fields provid
 '''
 class RequestForm(forms.ModelForm):
     title = forms.CharField(max_length=128)
-    desc = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea)
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(), required=False)
     city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow")
@@ -37,7 +37,7 @@ class RequestForm(forms.ModelForm):
         cleaned_data = self.cleaned_data
         return cleaned_data
 
-    field_order = ['language','title', 'desc', 'views','suggested_date','city', 'location', 'picture']
+    field_order = ['language','title', 'description', 'views','suggested_date','city', 'location', 'picture']
 
 
 '''
@@ -47,7 +47,7 @@ Alternative form for adding a request in the case where the language is already 
 '''
 class LanguageRequestForm(forms.ModelForm):
     title = forms.CharField(max_length=128)
-    desc = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea)
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(), required=False)
     city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow")
@@ -61,7 +61,7 @@ class LanguageRequestForm(forms.ModelForm):
         cleaned_data = self.cleaned_data
         return cleaned_data
 
-    field_order = ['title', 'desc', 'views', 'suggested_date', 'city', 'location', 'picture']
+    field_order = ['title', 'description', 'views', 'suggested_date', 'city', 'location', 'picture']
 
 '''
 Form for user registration. Users supply usually expected profile information. 

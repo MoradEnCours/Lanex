@@ -157,7 +157,7 @@ class SearchViewTesting(TestCase):
     def test_template_matches(self):
         response = self.client.get(reverse("lanex:search"))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "lanex/search.html")
+        self.assertTemplateUsed(response, "lanex/search/search_input.html")
 
 
     '''
@@ -199,7 +199,7 @@ class ModelsTesting(TestCase):
         lanex.models.LanguageRequest.objects.get_or_create(language=language[0], 
                                                            title='Some request title', 
                                                            location='Some location', 
-                                                           desc='Some request description', 
+                                                           description='Some request description', 
                                                            views=115, 
                                                            creator=create_user_object())
 
@@ -291,7 +291,7 @@ class FormTests(TestCase):
         sought_fields = {
             'language': django_field_models.ModelChoiceField,
             'title': django_fields.CharField,
-            'desc': django_fields.CharField,
+            'description': django_fields.CharField,
             'views': django_fields.IntegerField,
             'suggested_date' : django_fields.DateTimeField,
             'city': django_fields.CharField,
@@ -380,24 +380,17 @@ class ScriptTesting(TestCase):
 
 
     '''
-    
-    Rough parts of tests which didn't go so well, probably will delete but feel free to try out
-      tinkering with it in case you manage to spot a solution to implement them. Also some
-      helper methods present which didn't continue to make use of since don't have envy to keep 
-      writing more tests at this point.
-
     Testing to check that requests (created with users entering in the form which language they are
       interested in) are created without issue. This includes the four main languages and the
       Others category for languages not covered but some users may like to create requests for.
     '''
-    """
     def test_requests(self):
         requests_information = {
-            'French': ['Foo1', 'Foo2', 'Foo3'],
-            'Spanish': ['Foo1', 'Foo2', 'Foo3'],
-            'Japanese': ['Foo1', 'Foo2', 'Foo3'],
-            'English': ['Foo1', 'Foo2', 'Foo3'],
-            'Others': ['Foo1', 'Foo2', 'Foo3'],
+            'French': ['A French-English study group sounds good', 'Nous sommes des gamers [FR/EN Gamer Squad]', 'Ici, we speak about One Piece - and we do it in Frenglish'],
+            'Spanish': ['Saludos', 'Female Spanish-English reading club in Texas', 'Holaaaa'],
+            'Japanese': ['魔道士', 'hello O_O Japanese friends', 'I do not have a good title [Norwegian wanting to learn Japanese ^^]'],
+            'English': ['Interested in practising with English natives', 'Hallo meine Freunde, guten Tag euch allen (ahem hi)', 'What is up tout le monde, comment va-ton ?'],
+            'Others': ['你好', 'Ciao! Hey there! السلام عليكم', 'Hi, hi, hi! 大家好 ！！！'],
         }
         
         for language in requests_information:
@@ -406,7 +399,8 @@ class ScriptTesting(TestCase):
 
 
     '''
-    Ignore this test, not managing to work.
+    Method helping to check for proper added language requests and matches correct with what is
+      expected.
     '''
     
     def check_add_language_requests(self, language, request_titles):
@@ -420,20 +414,3 @@ class ScriptTesting(TestCase):
             except lanex.models.LanguageRequest.DoesNotExist:
                 raise ValueError(f"Couldn't find title {title} for the language {language}")
             self.assertEqual(request_title.language, language)
-
-
-def create_super_user_object():
-    return User.objects.create_superuser('admin', 'admin@test.com', 'testpassword')
-
-
-'''
-Helper method for getting templates.
-'''
-def get_template(path_to_template):
-    f = open(path_to_template, 'r')
-    template_str = ""
-    for line in f:
-        template_str = f"{template_str}{line}"
-    f.close()
-    return template_str
-    """

@@ -161,11 +161,11 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 ]
 
-#If true, users can register
+# Users can continue registering as long as registration is open: True
 REGISTRATION_OPEN = True
-#If true, user will be automatically logged in after registration
+# Once finished registering, users will be automatically logged in
 REGISTRATION_AUTO_LOGIN = True
-#The URL that Django redirects the users to after logging in
+# After logging in, user will be redirected to the home page
 LOGIN_REDIRECT_URL = 'lanex:index'
-#The page users are directed to if they are not logged in
+# If users are not logged in, this is the page they will be redirected to
 LOGIN_URL = 'auth_login'

@@ -18,7 +18,9 @@ If this is the case, the user is redirected to the settings page where they will
 '''
 def index(request):
     if request.user.is_authenticated:
-        if timezone.now() - request.user.date_joined < timedelta(seconds=5):
+        present_timezone = timezone.now()
+        user_join_date = request.user.date_joined
+        if present_timezone - user_join_date < timedelta(seconds=10):
             return redirect(reverse('lanex:user_settings', 
                                     kwargs={'user_profile_slug': request.user}))
 
@@ -52,7 +54,7 @@ def explore(request):
 
 
 '''
-Takes a request and renders the languages page.
+Takes a request and renders the languages page for the language categories.
 '''
 def languages(request):
     language_list = Language.objects.all()[:5]
@@ -62,7 +64,7 @@ def languages(request):
 
 
 '''
-Takes a request and slug and tries to return a rendered language page witt the requests 
+Takes a request and slug and tries to return a rendered language page with the requests 
   for a specific language.
 '''
 def show_language(request, language_name_slug):
@@ -114,7 +116,7 @@ def show_request(request, language_name_slug, request_name_slug):
     except LanguageRequest.DoesNotExist:
         context_dict['request'] = None
 
-    print(context_dict)
+    #print(context_dict)
     
     return render(request, 'lanex/request.html', context=context_dict)
 
@@ -249,7 +251,7 @@ def search(request):
     request_list = None
     
     if query != None:
-        request_list = LanguageRequest.objects.filter(Q(title__icontains=query) | Q(desc__icontains=query)) 
+        request_list = LanguageRequest.objects.filter(Q(title__icontains=query) | Q(description__icontains=query)) 
         return render(request, 'lanex/search.html', {'query': query,'requests': request_list}) 
     
     return render(request, 'lanex/index.html', {'query': query, 'requests': request_list})
