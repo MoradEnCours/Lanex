@@ -29,7 +29,7 @@ To make sure of using the right packages and versions required to run the web ap
 Make sure that the current directory is where file manage.py is located and enter the following in the command prompt:
 
 ```
-(lanex)$ python manage.py makemigrations
+(lanex)$ python manage.py makemigrations lanex
 (lanex)$ python manage.py migrate
 ```
 
@@ -55,64 +55,20 @@ Tests are provided, and to run them simply enter the following into command prom
 (lanex)$ python manage.py test lanex
 ```
 
-## Tools made use of in developing the web application
-* [Django](https://github.com/django/django)
-* [Pillow](https://github.com/python-pillow/Pillow)
-* [Django-Extensions](https://github.com/django-extensions/django-extensions)
-* [Django-Location-Field](https://github.com/caioariede/django-location-field)
-* [Django-Registration](https://github.com/ubernostrum/django-registration)
-* [jQuery](https://github.com/jquery/jquery)
-* [Bootstrap](https://github.com/twbs/bootstrap)
+## Primary tools made use of in developing the web application as well as resources and tutorials followed to help implement features
+* [Django](https://github.com/django/django) - A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+* [Pillow](https://github.com/python-pillow/Pillow) - A Python Imaging Library (PIL), which adds support for opening, manipulating, and saving images.
+* [Django-Extensions](https://github.com/django-extensions/django-extensions) - A collection of custom extensions for the Django Framework. These include management commands, additional database fields, admin extensions and much more.
+* [Django-Location-Field-Repo+Docs](https://github.com/caioariede/django-location-field ; https://django-location-field.readthedocs.io/en/latest/) - Provides model and form fields, and widgets that allow users to easily pick locations and store in the database.
+* [Django-Registration-Repo+Docs+CodenongTutorial](https://github.com/ubernostrum/django-registration ; https://django-registration.readthedocs.io/ ; https://www.codenong.com/5658745/) - An extensible application providing user registration functionality for Django-powered Web sites
+* [jQuery](https://github.com/jquery/jquery) - A lightweight, "write less, do more", JavaScript library.
+* [Bootstrap](https://github.com/twbs/bootstrap) - the most popular CSS Framework for developing responsive and mobile-first websites.
 * [Bootdey](https://www.bootdey.com/snippets/view/Social-post)
 * [Bootstrap-examples](https://getbootstrap.com/docs/4.2/examples/dashboard/)
-* [Bootsnipp](https://bootsnipp.com/snippets/7nk08)
+* [Bootsnipp](https://bootsnipp.com/snippets/7nk08) - An element gallery for web designers and web developers.
+* [Tango-With-Django-Textbook](https://www.tangowithdjango.com/) - Recommended course textbook, including main 20 chapters and section for appendices.
+* [Creating-Comments-System-Tutorial](https://djangocentral.com/creating-comments-system-with-django/) - Guide for building a basic commenting system for a Django 2.X app, which lets readers add comments on posts.
+* [Query-Form-Processing-Tutorial](https://djangocentral.com/creating-comments-system-with-django/)  - Chapter 7 from the Django book providing useful demonstrations for form processing including query searching.
 
-
-
-
-____________________________________________
-[Previous readme]
-____________________________________________
-
-# WAD2_Group_Project  		
-
-
-	Run app on machine
-	
-1 - Git clone
-
-2 - Enter directory containing manage.py
-
-3 - Type into the command prompt:       
-
-			conda activate lanex
-			
-	        pip install -r requirements.txt
-			
-	        python manage.py makemigrations
-			
-	        python manage.py migrate
-			
-	        python populate_lanex.py
-			
-4 - Enter 127.0.0.1:8000  into the browser's URL
-
-
-## Livereload server 
-
-A dependency that reloads the page after a change (as manual reloading gets annoying..)
-
-### Usage: 
-
-Start the livereload server:
-
-**$ python manage.py livereload**
-keep the livereload server running.
-
-Start the django development server as usual (in another console):
-
-**$ python manage.py runserver**
-In the browser's address bar access your web app by doing:
-
-127.0.0.1:8000 or localhost:8000
-now every time you hit save in your editor, the django-development-server/livereload-server automatically updates the staticfiles
+## Final words from the team:
+Merci, enjoy, buenos días y sayanora!

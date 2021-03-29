@@ -18,7 +18,7 @@ class LanguageForm(forms.ModelForm):
 
 '''
 Form for adding a request with the language specified, listing the fields provided for users 
-  creating a request to complete.
+  creating a request to complete. (Default location set to Queen Margaret Union because it's awesome.)
 '''
 class RequestForm(forms.ModelForm):
     title = forms.CharField(max_length=128)
@@ -26,7 +26,7 @@ class RequestForm(forms.ModelForm):
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(), required=False)
     city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow")
-    location = PlainLocationField(based_fields=['city'], zoom=7, initial='55.87155490317328,-4.288530349731445', help_text="Move the pin around.")
+    location = PlainLocationField(based_fields=['city'], zoom=7, initial='55.87381045,-4.291500731422247', help_text="Move the pin around.")
 
 
     class Meta:
@@ -51,7 +51,7 @@ class LanguageRequestForm(forms.ModelForm):
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(), required=False)
     city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow")
-    location = PlainLocationField(based_fields=['city'], zoom=7, initial='55.87155490317328,-4.288530349731445', help_text="Move the pin around.")
+    location = PlainLocationField(based_fields=['city'], zoom=7, initial='55.87381045,-4.291500731422247', help_text="Move the pin around.")
 
     class Meta:
         model = LanguageRequest
@@ -76,7 +76,7 @@ class UserForm(forms.ModelForm):
 '''
 Form for user settings where a user may modify email, first and last name.
 '''
-class UserForm2(forms.ModelForm):
+class UserFormAdditional(forms.ModelForm):
 
     class Meta:
         model = User

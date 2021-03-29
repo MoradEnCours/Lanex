@@ -312,10 +312,10 @@ class FormTests(TestCase):
       included for example are the user's full name and email, and profile image.
     '''
     def test_user_settings_form(self):
-        self.assertTrue('UserForm2' in dir(forms))
+        self.assertTrue('UserFormAdditional' in dir(forms))
         self.assertTrue('UserProfileForm' in dir(forms))
         
-        user_form = forms.UserForm2()
+        user_form = forms.UserFormAdditional()
         user_profile_form = forms.UserProfileForm()
         
         sought_user_fields = {

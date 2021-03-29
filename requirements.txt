@@ -13,4 +13,3 @@ pytz==2021.1
 six==1.15.0
 sqlparse==0.4.1
 wincertstore==0.2
-django-livereload-server==0.3.2

@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.urls import reverse
 from lanex.models import Language, LanguageRequest, UserProfile
-from lanex.forms import LanguageForm, RequestForm, UserForm, UserProfileForm, CommentForm, LanguageRequestForm, UserForm2
+from lanex.forms import LanguageForm, RequestForm, UserForm, UserProfileForm, CommentForm, LanguageRequestForm, UserFormAdditional
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -303,7 +303,7 @@ def user_settings(request, user_profile_slug):
         user_profile = UserProfile.objects.get(user=request.user)
         
         if request.method == "POST":
-            update_user_form = UserForm2(data=request.POST, instance=request.user)
+            update_user_form = UserFormAdditional(data=request.POST, instance=request.user)
             update_profile_form = UserProfileForm(data=request.POST, instance=user_profile)
         
             if update_user_form.is_valid() and update_profile_form.is_valid():
@@ -321,7 +321,7 @@ def user_settings(request, user_profile_slug):
                 print(update_user_form.errors, update_profile_form.errors)
         
         else:
-            update_user_form = UserForm2(instance=request.user)
+            update_user_form = UserFormAdditional(instance=request.user)
             update_profile_form = UserProfileForm(instance=user_profile)
         return render(request, 'lanex/user_settings.html', 
             {'update_user_form': update_user_form, 'update_profile_form': update_profile_form})
