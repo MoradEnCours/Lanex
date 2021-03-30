@@ -26,33 +26,6 @@
         </div>
     </div>
 </div>
-<section id="requests" class="bg-">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-            {% if requests %}
-                {% for request in requests %}
-                    {% if request.completed == False %}
-                    <ul class="list">
-                        <li class="list">
-                        {% if request.picture %}
-                        <img class="list" src="{{ request.picture.url }}" />
-                        {% else %}
-                        <img class="list" src="{{ request.language.picture.url }}" />
-                        {% endif %}
-                        <h3 class="list"><a href="{% url 'lanex:show_request' request.language.slug request.slug %}">
-                        {{ request.title }}</a></h3>
-                        <p class="list">{{ request.desc }}</p>
-                        </li>
-                    </ul>
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                <li class="nav-item">There are no requests present.</li>
-            {% endif %}
-        <br>
-        </div>
-      </div>
-    </div>
-    </section>
+{% include "lanex/request/requests.html" %} 
+
 {% endblock %}

@@ -22,10 +22,6 @@
     background-color: #1888ff52 !important;
 }
 
-.request-description {
-    color: red !important;
-}
-
 #id_location{
     display: none;
 }

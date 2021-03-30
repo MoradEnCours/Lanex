@@ -47,12 +47,12 @@ Alternative form for adding a request in the case where the language is already 
   language to which the URL links.
 '''
 class LanguageRequestForm(forms.ModelForm):
-    title = forms.CharField(max_length=128)
-    description = forms.CharField(widget=forms.Textarea)
-    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(), required=False)
-    city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow")
+    title = forms.CharField(max_length=128, widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control', 'rows': '3', 'cols': '10'}))
+    suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(attrs={'class' : 'form-control col-md-3 mr-2'}), required=False)
+    city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow", widget=forms.TextInput(attrs={'class' : 'form-control'}))
     location = PlainLocationField(based_fields=['city'], zoom=7, initial='55.87381045,-4.291500731422247', help_text="Move the pin around.")
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:
         model = LanguageRequest

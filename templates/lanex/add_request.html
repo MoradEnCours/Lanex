@@ -11,7 +11,7 @@ Add A Request
 {% block body_block %}
 <div class="container text-center">
     <div class="container">
-        <h3>Add a language request</h3>
+        <h3>Add a {{language}} language request</h3>
     </div>
 
     <div class="container col-md-8 mt-5">
@@ -28,10 +28,13 @@ Add A Request
                     <label>Title</label>
                     {{ form.title }}
                 </div>
+                {% if language %}
+                {% else %}
                 <div class="form-group row">
                     <label>Language</label>
                     {{ form.language }}
                 </div>
+                {% endif %}
                 <div class="form-group row">
                     <label>Description</label>
                     {{ form.description}}
