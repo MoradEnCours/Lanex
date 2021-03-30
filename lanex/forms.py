@@ -21,12 +21,13 @@ Form for adding a request with the language specified, listing the fields provid
   creating a request to complete. (Default location set to Queen Margaret Union because it's awesome.)
 '''
 class RequestForm(forms.ModelForm):
-    title = forms.CharField(max_length=128)
-    description = forms.CharField(widget=forms.Textarea)
-    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(), required=False)
-    city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow")
+    title = forms.CharField(max_length=128, widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control', 'rows': '3', 'cols': '10'}))
+    suggested_date = forms.DateTimeField(widget=forms.SelectDateWidget(attrs={'class' : 'form-control col-md-3 mr-2'}), required=False)
+    city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow", widget=forms.TextInput(attrs={'class' : 'form-control'}))
     location = PlainLocationField(based_fields=['city'], zoom=7, initial='55.87381045,-4.291500731422247', help_text="Move the pin around.")
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    language = forms.Select(attrs={'class':'form-control'})
 
 
     class Meta:
@@ -56,6 +57,7 @@ class LanguageRequestForm(forms.ModelForm):
     class Meta:
         model = LanguageRequest
         exclude = ('creator','slug','language','request_id','completed')
+
     
     def clean(self):
         cleaned_data = self.cleaned_data
