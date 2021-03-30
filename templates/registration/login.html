@@ -13,11 +13,22 @@
         <div class="login-form">
             <form class="form-signin" role="form" method="post" action=".">
                 {% csrf_token %}
-                <div class="form-group">{{ form }}</div>
+                <div class="form-group row">
+                    <label>Username</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="form-group row">
+                    <label>Password</label>
+                    {{ form.password }}
+                </div>
+
                 <button type="submit" class="btn btn-black">Login</button>
                 <a href="/accounts/register" class="btn btn-secondary">Register</a>
             </form>
         </div>
     </div>
 </div>
+
+
 {% endblock %}

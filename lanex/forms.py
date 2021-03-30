@@ -53,7 +53,7 @@ class LanguageRequestForm(forms.ModelForm):
     city = forms.CharField(max_length=255, help_text="Search Map", initial="Glasgow", widget=forms.TextInput(attrs={'class' : 'form-control'}))
     location = PlainLocationField(based_fields=['city'], zoom=7, initial='55.87381045,-4.291500731422247', help_text="Move the pin around.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-
+    
     class Meta:
         model = LanguageRequest
         exclude = ('creator','slug','language','request_id','completed')
