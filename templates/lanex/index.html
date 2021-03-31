@@ -11,6 +11,7 @@
 
 {% block body_block %}
 {% if user.is_authenticated %}
+  <h3 class="align-self-start ml-5 mb-3">Hot requests</h3>
   {% include "lanex/request/requests.html" %} 
 
 {% else %}

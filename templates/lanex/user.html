@@ -2,21 +2,48 @@
 {% load static %}
 
 {% block title_block %}
-    {% if user_profile %}
-        {{ user_profile.user.username }}
-    {% else %}
-        Unknown User
-    {% endif %}
+{% if user_profile %}
+{{ user_profile.user.username }}
+{% else %}
+Unknown User
+{% endif %}
 {% endblock %}
 {% block body_block %}
-<div class="container text-center">
+
+<div class="container mb-5 px-5">
+    <div class="row justify-content-end">
+        <!-- <button type="submit" class="btn btn-success">Change Password</button> -->
+
+        <a style="float:right;" class="btn btn-primary"
+            href="{% url 'lanex:user_settings' user_profile.user.username %}">Settings</a>
+    </div>
+
+    <div class="row justify-content-center">
+        <img src="{{ user_profile.picture.url }}" alt="profile picture" class="avatar">
+    </div>
+    <div class="row justify-content-center my-2">
+            <h3>{{user_profile.user.first_name}} {{user_profile.user.last_name}}</h3>
+    </div>
+    <div class="row justify-content-center my-2">
+        <h3>{{user_profile.user.username}}</h3>
+    </div>
+</div>
+
+<div class="request-container">
+    {% include "lanex/request/requests.html" with r=request %}
+</div>
+
+
+
+<!-- <div class="container text-center">
     <div class="jumbotron p-3 jumbo-bg">
         <div class="container">
         {% if user_profile %}
             <table class="tg">
               <tr>
                 <th class="tg-yw4l">
-                    <img class="profile" src="{{ user_profile.picture.url }}">
+                    <img src="{{ user_profile.picture.url }}" alt="profile picture" class="img-thumbnail">
+                    <img class="profile" src="">
                 </th>
                 {% if user.is_authenticated %}
                     {% if user_profile.user.username == request.user.username %}
@@ -39,18 +66,11 @@
     {% if user_profile %}
     <section id="requests" class="bg">
             <div class="row">
-                <h4>User's requests</h4>
-                    {% if requests %}
-                        {% for request in requests %}
-                       {% include "lanex/request/request-card.html" with r=request %}
-                        {% endfor %}
-                    {% else %}
-                        <li class="nav-item">There are no requests present.</li>
-                    {% endif %}
+                
             </div>
     {% else %}
     User has made no requests.<br />
     {% endif %}
     </section>
-</div>
+</div> -->
 {% endblock %}

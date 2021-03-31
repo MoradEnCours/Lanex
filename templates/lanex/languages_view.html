@@ -1,6 +1,6 @@
-<section id="languages" class="mt-4">
-    <h4 class="mb-3">Most popular languages on the site:</h4>
+<section id="languages" class="my-5">
     <div class="row">
+        <div class="col-md-1"></div>
         {% if languages %}
             {% for l in languages %}
                 <div class="col-md-2">
@@ -14,6 +14,8 @@
                     </a>
                 </div>
             {% endfor %}
+        <div class="col-md-1"></div>
+        
         {% else %}
             <li class="nav-item">No languages present it seems </li>
         {% endif %}
