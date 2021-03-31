@@ -99,6 +99,7 @@ class UserProfileForm(forms.ModelForm):
 Form for adding comments.
 '''
 class CommentForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control', 'rows': '1', 'cols': '10'}))
     class Meta:
         model = Comment
         fields = ('body',)

@@ -9,90 +9,9 @@
     {% endif %}
 {% endblock %}
 {% block body_block %}
-    <div class="jumbotron p-3 jumbo-bg">
-        <div class="container text-center">
-        {% if request %}
-             <h1 class="jumbotron-heading">{{ request.title }}</h1><hr>
-        {% else %}
-            The language request does not exist.
-        {% endif %}
-        </div>
-    
-    <ul>
-    {% if request %}
-        {% if request.completed %}
-        <h4>This request is over</h4>
-        {% endif %}
-        {% if request.location %}
-          <h6><span data-feather="map-pin"></span><a class="logo" href="https://maps.google.com?q={{ request.location }}"> Open Google Maps </a></h6>
-        {% endif %}
-        {% if request.suggested_date %}
-          <h6><span data-feather="calendar"></span> {{ request.suggested_date }}</h6>
-        {% endif %}
-        <h6><span data-feather="eye"></span> {{ request.views }}</h6>
-        <h6>{{ request.description }}</h6>
-        {% if request.picture %}
-          <img class="request" src="{{ request.picture.url }}">
-        {% endif %}
-        <div class="row">
-          <div class="col">
-          <h5>Created by <a class="logo" href = "{% url 'lanex:show_user' request.creator.username %}">{{ request.creator.username }}</a></h5>
-          </div>
-          <div class="col">
-          {% if user.is_authenticated and request.completed == False %}
-            {% if request.creator != user %}
-              <h5><a style="float:right" class="btn btn-success" href = "{% url 'lanex:accept_request' request.language.slug request.slug %}"> Accept Request </a></h5>
-            {% else %}
-              <h5><a style="float:right" class="btn btn-danger" href = "{% url 'lanex:delete_request' request.language.slug request.slug %}"> Delete Request </a></h5>
-            {% endif %}
-          {% endif %}    
-          </div>
-        </div>
-    </ul>
-    {% else %}
-        <strong>404 error: Page does not exist</strong>
-    {% endif %}
-  </div>
-{% if user.is_authenticated %}
-<div class="container">
-    <div class="col-md-8 card mb-4  mt-3 ">
-      <div class="card-body">
-        <h2>{{ comments.count }} comments</h2>
 
-        {% for comment in comments %}
-        <div class="comments" style="padding: 10px;">
-          <p class="font-weight-bold">
-            <a href = "{% url 'lanex:show_user' comment.creator.username %}">{{ comment.creator.username }}</a>
-            <span class=" text-muted font-weight-normal">
-              {{ comment.created_on }}
-            </span>
-          </p>
-          {{ comment.body | linebreaks }}
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    {% if user.is_authenticated %}
-    <div class="col-md-8 card mb-4  mt-3 ">
-      <div class="card-body">
-        {% if new_comment %}
-        <div class="alert alert-success" role="alert">
-          Comment added successfully!
-        </div>
-		
-		{% endif %}
-		
-        <h3>Leave a comment</h3>
-        <form method="post" style="margin-top: 1.3em;">
-          {{ comment_form.as_p }}
-          {% csrf_token %}
-          <button type="submit" class="btn btn-primary  btn-lg">Click to comment</button>
-        </form>
-		
-		
-      </div>
-    </div>
-    {% endif %}
-  </div>
-{% endif %}
+
+{% include "lanex/request/request-card.html" with r=request full=True comments=comments%}
+
+
 {% endblock %}

@@ -1,20 +1,10 @@
 
-<div>
+<div class="request-container">
     {% include "lanex/search/search_input.html" %}
     {% if requests %} {% for r in requests %}
-        {% include "lanex/request/request-card.html" with request=r %}
+        {% include "lanex/request/request-card.html" with request=r full=False %}
     {% endfor %} 
     {% else %}
     <p>There are no requests present.</p>
     {% endif %}
 </div>
-{% comment %} 
-<section id="requests" class="bg-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <ul class="nav flex-column"></ul>
-            </div>
-        </div>
-    </div>
-</section> {% endcomment %}
