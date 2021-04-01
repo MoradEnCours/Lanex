@@ -1,11 +1,15 @@
-<section id="languages" class="my-5">
+<section id="languages" class="mb-5">
     <div class="row">
         <div class="col-md-1"></div>
         {% if languages %}
             {% for l in languages %}
                 <div class="col-md-2">
                     <a href = "{% url 'lanex:show_language' l.slug %}">
+                        {% if l == active %}
+                        <div class="card border-primary">
+                        {% else %}
                         <div class="card">
+                        {% endif %}
                             <img class="card-image language-card-image" src="{{ l.picture.url }}" />
                             <div class="card-body">
                                 <h5 class="card-title test">{{ l.name }}</h5> 

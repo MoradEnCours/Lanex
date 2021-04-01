@@ -74,6 +74,10 @@ def show_language(request, language_name_slug):
         requests = LanguageRequest.objects.filter(language=language)
         context_dict['requests'] = requests
         context_dict['language'] = language
+        language_list = Language.objects.all()[:5]
+        request_list = LanguageRequest.objects.order_by('-views')[:5]
+        context_dict['languages'] = language_list
+        
     except Language.DoesNotExist:
         context_dict['language'] = None
         context_dict['requests'] = None

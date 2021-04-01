@@ -29,48 +29,7 @@ Unknown User
     </div>
 </div>
 
-<div class="request-container">
-    {% include "lanex/request/requests.html" with r=request %}
-</div>
+{% include "lanex/request/requests.html" with r=request %}
+{% include "lanex/base/footer.html" %}
 
-
-
-<!-- <div class="container text-center">
-    <div class="jumbotron p-3 jumbo-bg">
-        <div class="container">
-        {% if user_profile %}
-            <table class="tg">
-              <tr>
-                <th class="tg-yw4l">
-                    <img src="{{ user_profile.picture.url }}" alt="profile picture" class="img-thumbnail">
-                    <img class="profile" src="">
-                </th>
-                {% if user.is_authenticated %}
-                    {% if user_profile.user.username == request.user.username %}
-                        <a style="float:right;" class="action-button shadow animate blue" href="{% url 'lanex:user_settings' user_profile.user.username %}">Settings</a><br />
-                    {% else %}
-                        <a style="float:right;" class="action-button shadow animate blue" href ="mailto: {{ user_profile.user.email }}">Send mail to the user</a><br />
-                    {% endif %}
-                {% endif %}
-                <th class="tg-yw41">
-                    <h1 class="jumbotron-heading">{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</h1>
-                    <h6>{{ user_profile.user.username }}</h6>
-                </th>
-              </tr>
-            </table>  
-        {% else %}
-            The mentioned user does not seem to exist.
-        {% endif %}
-        </div>
-    </div>
-    {% if user_profile %}
-    <section id="requests" class="bg">
-            <div class="row">
-                
-            </div>
-    {% else %}
-    User has made no requests.<br />
-    {% endif %}
-    </section>
-</div> -->
 {% endblock %}

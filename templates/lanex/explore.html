@@ -5,19 +5,11 @@
 Explore
 {% endblock %}
 {% block body_block %}
-<div class="container text-center">
-    <div class="jumbotron p-3 jumbo-bg jumbo-bg">
-        <div class="container">
-            <h2 class="activity">Explore some of the language request activities</h2>
-        </div>
-    </div>
-</div>
 
-<div class="container text-center">
+<div class="text-center mt-5">
     {% include "lanex/languages_view.html" %}
     {% include "lanex/request/requests.html" %} 
 </div>
 
-
-
+{% include "lanex/base/footer.html" %}
 {% endblock %}
