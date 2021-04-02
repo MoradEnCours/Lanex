@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 '''
 Takes in a request and renders the index page.
 The intention of conditional statements is to check if a user has registered recently.
-If this is the case, the user is redirected to the settings page where they will will be
+If this is the case, the user is redirected to the settings page where they will be
   prompted to input name details and a profile picture.
 '''
 def index(request):
