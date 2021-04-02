@@ -360,5 +360,3 @@ Takes a request and renders a page mentioning about terms and conditions.
 '''
 def terms(request):
     return render(request, 'lanex/terms.html')
-
-
