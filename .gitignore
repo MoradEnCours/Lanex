@@ -62,6 +62,8 @@ db.sqlite3
 .DS_Store
 db.sqlite3-journal
 *.key
+thumbs.db
+
 
 # Flask stuff:
 instance/

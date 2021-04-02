@@ -44,19 +44,6 @@ class IndexViewTesting(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'There are no requests present.')
         self.assertQuerysetEqual(response.context['requests'], [])
-        
-
-    '''
-    Checks whether categories are displayed correctly when present.
-    '''
-    def test_index_view_with_languages(self):
-        add_language('Spanish', 'this-be-a-slug', "https://i.kym-cdn.com/photos/images/newsfeed/001/688/970/a72.jpg")
-        response = self.client.get(reverse('lanex:index'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Spanish")
-
-        num_categories = len(response.context['languages'])
-        self.assertEquals(num_categories, 1)
 
 
     def test_location_lanex(self):
@@ -82,6 +69,46 @@ class IndexViewTesting(TestCase):
         response = self.client.get(reverse('lanex:index'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'lanex/index.html')
+
+
+class ExploreViewTesting(TestCase):
+    '''
+    Displays the appropriate message if no languages exist.
+    '''
+    def test_explore_view_with_no_languages(self):
+        response = self.client.get(reverse('lanex:explore'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'There are no requests present.')
+        self.assertQuerysetEqual(response.context['requests'], [])
+
+
+    '''
+    Checks whether categories are displayed correctly when present.
+    '''
+    def test_explore_view_with_languages(self):
+        add_language('Spanish', 'this-be-a-slug', "https://i.kym-cdn.com/photos/images/newsfeed/001/688/970/a72.jpg")
+        response = self.client.get(reverse('lanex:explore'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Spanish")
+
+        num_categories = len(response.context['languages'])
+        self.assertEquals(num_categories, 1)
+
+
+    def test_location_explore(self):
+        """
+        Tests to see that view location matches  expected url written into url search bar by users  (hardcoded)'
+        """
+        response = self.client.get('/explore/')
+        self.assertEqual(response.status_code, 200)
+
+
+    """
+    Tests to see that the anticipated relative view is able to call upon the index view. 
+    """
+    def test_url_accessibility(self):
+        response = self.client.get(reverse('lanex:explore'))
+        self.assertEquals(response.status_code, 200)
 
 
 class ShowUserProfileViewTesting(TestCase):
@@ -164,7 +191,7 @@ class SearchViewTesting(TestCase):
     Tests that the view is able to be invoked by the expected hardcoded url.
     '''
     def test_location(self):
-        response = self.client.get('/search/?q=redbone/')
+        response = self.client.get('/search/?q=alanguagereq4me/')
         self.assertEqual(response.status_code, 200)
 
 
@@ -390,7 +417,7 @@ class ScriptTesting(TestCase):
             'Spanish': ['Saludos', 'Female Spanish-English reading club in Texas', 'Holaaaa'],
             'Japanese': ['魔道士', 'hello O_O Japanese friends', 'I do not have a good title [Norwegian wanting to learn Japanese ^^]'],
             'English': ['Interested in practising with English natives', 'Hallo meine Freunde, guten Tag euch allen (ahem hi)', 'What is up tout le monde, comment va-ton ?'],
-            'Others': ['你好', 'Ciao! Hey there! السلام عليكم', 'Hi, hi, hi! 大家好 ！！！'],
+            'Others': ['Привет классные люди', 'Ciao! Hey there! السلام عليكم', 'Hi, hi, hi! 大家好 ！！！'],
         }
         
         for language in requests_information:

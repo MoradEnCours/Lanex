@@ -1,4 +1,4 @@
-# Lanex 			[Readme WIP]
+# Lanex
 
 A web application that enables users to connect with one another to exchange languages, helping to improve language knowledge and allow users to make their own language requests to help discover potential language buddies.
 the way
@@ -60,6 +60,7 @@ Tests are provided, and to run them simply enter the following into command prom
 * [Pillow](https://github.com/python-pillow/Pillow) - A Python Imaging Library (PIL), which adds support for opening, manipulating, and saving images.
 * [Django-Extensions](https://github.com/django-extensions/django-extensions) - A collection of custom extensions for the Django Framework. These include management commands, additional database fields, admin extensions and much more.
 * [Django-Location-Field-Repo+Docs](https://github.com/caioariede/django-location-field ; https://django-location-field.readthedocs.io/en/latest/) - Provides model and form fields, and widgets that allow users to easily pick locations and store in the database.
+* [OpenStreetMaps+Leaflet.js-library](https://wiki.openstreetmap.org/wiki/Leaflet) - Used in Django-location-field to assist with functionality of mapping a location when adding language requests.
 * [Django-Registration-Repo+Docs+CodenongTutorial](https://github.com/ubernostrum/django-registration ; https://django-registration.readthedocs.io/ ; https://www.codenong.com/5658745/) - An extensible application providing user registration functionality for Django-powered Web sites
 * [jQuery](https://github.com/jquery/jquery) - A lightweight, "write less, do more", JavaScript library.
 * [Bootstrap](https://github.com/twbs/bootstrap) - the most popular CSS Framework for developing responsive and mobile-first websites.
@@ -69,6 +70,7 @@ Tests are provided, and to run them simply enter the following into command prom
 * [Tango-With-Django-Textbook](https://www.tangowithdjango.com/) - Recommended course textbook, including main 20 chapters and section for appendices.
 * [Creating-Comments-System-Tutorial](https://djangocentral.com/creating-comments-system-with-django/) - Guide for building a basic commenting system for a Django 2.X app, which lets readers add comments on posts.
 * [Query-Form-Processing-Tutorial](https://djangocentral.com/creating-comments-system-with-django/)  - Chapter 7 from the Django book providing useful demonstrations for form processing including query searching.
+* [BIng-Search](https://docs.microsoft.com/en-gb/rest/api/cognitiveservices/bing-web-api-v7-reference) - Provides the ability to embed search results from the Bing search engine within an application
 
 ## Final words from the team:
 Merci, enjoy, buenos días y sayanora!
