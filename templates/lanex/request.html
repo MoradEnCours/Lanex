@@ -10,8 +10,9 @@
 {% endblock %}
 {% block body_block %}
 
-
-{% include "lanex/request/request-card.html" with r=request full=True comments=comments%}
+<div class="mt-4">
+    {% include "lanex/request/request-card.html" with r=request full=True comments=comments%}
+</div>
 
 
 {% endblock %}

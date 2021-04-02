@@ -79,8 +79,14 @@
                     >
                         <i class="fa fa-map-marker icon"></i>Google Maps
                     </a>
-                    {% if full %} 
-                    <a style="float:right" class="btn btn-success" href = "{% url 'lanex:accept_request' request.language.slug request.slug %}"> Accept Request </a>
+                    {% if full %}
+                        {% if r.completed == False %}
+                        {% if r.creator != user %}
+                            <a style="float:right" class="btn btn-success" href = "{% url 'lanex:accept_request' request.language.slug request.slug %}"> Accept Request </a>
+                        {% else %}
+                            <a style="float:right" class="btn btn-danger" href = "{% url 'lanex:delete_request' request.language.slug request.slug %}"> Delete Request  </a>
+                        {% endif %}
+                    {% endif %}  
                     {% endif %}
                 {% endif %}
                 </div>
@@ -116,12 +122,13 @@
                     </li>
                     {% endfor %}
 
+                    {% if user.id != None%}
                     <form method="post">
                         {{ comment_form.body }}
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary mt-3">Comment</button>
-                      </form>
-
+                    </form>
+                    {% endif %}
                 </ul>
             </div>
             {% endif %}

@@ -12,6 +12,10 @@
 {% block body_block %}
 
 {% include "lanex/languages_view.html" with active=language%}
+<p class="text-muted text-center">
+    On this page can be found language requests associated with the {{language}} language 
+</p>
+
 
 {% include "lanex/request/requests.html" %} 
 
